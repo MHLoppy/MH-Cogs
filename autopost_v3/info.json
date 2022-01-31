@@ -1,0 +1,29 @@
+{
+    "author" : [
+		"MHLoppy"
+    ],
+    "description" : "Automatically post daily weather forecasts; Get current weather for specified city. Based on weather cog by TrustyJAID",
+    "disabled" : false,
+    "end_user_data_statement" : "This cog may store User ID's for the purposes of setting default preferred temperature units.",
+    "hidden" : false,
+    "install_msg" : "Primary commands: `[p]autopost location`, `[p]shortweather location`. See GitHub repo for more details.",
+    "max_bot_version" : "0.0.0",
+    "min_bot_version" : "3.1.8",
+    "min_python_version" : [
+        3,
+        7,
+        2
+    ],
+    "name" : "Autopost",
+    "permissions" : [
+        "embed_links"
+    ],
+    "required_cogs" : {},
+    "requirements" : [],
+    "short" : "Auto-posts daily weather forecasts!",
+    "tags" : [
+        "weather",
+        "utility"
+    ],
+    "type" : "COG"
+}
