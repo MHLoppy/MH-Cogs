@@ -1,0 +1,27 @@
+{
+    "author" : [
+		"MHLoppy"
+    ],
+    "description" : "Automatically replies to messages with Rise of Babel taunts (from Rise of Nations). Based on hiback cog by Falcom",
+    "disabled" : false,
+    "hidden" : false,
+    "install_msg" : "Say a number from 1-999 in its own message to trigger the corresponding taunt.",
+    "max_bot_version" : "0.0.0",
+    "min_bot_version" : "3.1.8",
+    "min_python_version" : [
+        3,
+        7,
+        2
+    ],
+    "name" : "RonRobTaunts",
+    "permissions" : [
+        "embed_links"
+    ],
+    "required_cogs" : {},
+    "requirements" : [],
+    "short" : "Reponds to messages with Rise of Babel taunts!",
+    "tags" : [
+        "utility",
+    ],
+    "type" : "COG"
+}
