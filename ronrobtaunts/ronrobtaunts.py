@@ -168,7 +168,7 @@ class RonRobTaunts(commands.Cog):
           114:'Stop Whining.',
           115:'Who\'s your daddy?.',
           116:'Excellent.',
-          117:'Shut up fool!.',
+          117:'Shut up fool!',
           118:'I don\'t think so.',
           119:'Start the game already!',
           120:'I am weak.',
