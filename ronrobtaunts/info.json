@@ -21,7 +21,7 @@
     "requirements" : [],
     "short" : "Reponds to messages with Rise of Babel taunts!",
     "tags" : [
-        "utility",
+        "utility", "weather"
     ],
     "type" : "COG"
 }
