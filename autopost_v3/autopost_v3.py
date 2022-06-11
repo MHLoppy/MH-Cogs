@@ -39,7 +39,7 @@ class Autopost(commands.Cog):
     """Posts weather from https://openweathermap.org"""
 
     __author__ = ["MHLoppy"]
-    __version__ = "3.0.0"
+    __version__ = "3.1.0"
 
     def __init__(self, bot):
         self.bot = bot
@@ -58,11 +58,6 @@ class Autopost(commands.Cog):
             "imperial": {"code": ["i", "f"], "speed": "mph", "temp": " °F"},
             "metric": {"code": ["m", "c"], "speed": "km/h", "temp": " °C"},
         }
-
-#    def cog_unload(self):#I haven't figured out how to do proper loops in v3 yet X_X
-#        """Clean up when cog shuts down."""
-#        if self.bg_loop_task:
-#            self.bg_loop_task.cancel()
 
     def format_help_for_context(self, ctx: commands.Context) -> str:
         """
@@ -351,7 +346,7 @@ class Autopost(commands.Cog):
         embed.add_field(
             name=_(weatheremoji + " **Weather**"),
             value="{0:.2f}{1} (feels like {2:.2f}{3}),\n{4}".format(
-			    currenttemp, self.unit[units]["temp"],
+                currenttemp, self.unit[units]["temp"],
                 currentfeels, self.unit[units]["temp"],
                 condition
             ),
@@ -362,7 +357,7 @@ class Autopost(commands.Cog):
         
         # send constructed message
         await ctx.send(embed=embed)
-    
+
     async def autopost_loop(
         self,
         ctx: commands.Context
@@ -370,76 +365,90 @@ class Autopost(commands.Cog):
         guild = ctx.message.guild
         author = ctx.message.author
         channel = ctx.message.channel
+    
+        # wait for bot to be loaded etc
+        await self.bot.wait_until_ready()
         
-        await self.bot.wait_until_ready()#might be red v2? not sure
-        countdown = 0
-        loadcheck = 0
+        # do the loop
         while "Autopost" in self.bot.cogs:
             
-            # check if autopost is toggled on
-            if countdown < 1:
-                switch = await self.config.guild(guild).autopoststate()
-            else:# prevent spam
-                return
-            if switch == True:
+            # if autoposting is enabled, then autopost
+            if await self.config.guild(guild).autopoststate():
+                # to save resources, we *copy* the value of settings *outside* of the loop
+                # this means we don't risk repeatedly reading the source value (which is slower)
+                posting_time = await self.config.guild(guild).autoposttime()
+                posting_channel = await self.config.guild(ctx.guild).autopostchannel()
+                location = await self.config.guild(guild).autopostlocation()
                 
-                # evaluate time after switch since it's more expensive (I assume)
-                if loadcheck < 1:#save resources by avoiding the settings read (right?)
-                    posttime = await self.config.guild(guild).autoposttime()
-                    loadcheck += 1
-                
-                if posttime == "":
-                    await self.config.guild(guild).autoposttime.set(datetime.now().timestamp())
-                    posttime = datetime.now().timestamp()
-                    await ctx.send("No autopost time set, defaulting to current time. This can be updated using `[p]autopostset time.`")
-
-                if int(posttime) <= datetime.now().timestamp():
+                # perform check on autopost channel
+                # if there's no channel, set default to where the autopost command was sent
+                if posting_channel == "":
+                    await self.config.guild(ctx.guild).autopostchannel.set(ctx.channel.id)#make >this< channel the saved channel if nothing is set
+                    await ctx.send("No autopost channel was set, defaulting to current channel. This can be changed using `[p]autopostset channel`")
+                else:
+                    pass
+        
+                # perform check on autopost location
+                # if there's no location, notify user and abort
+                if location == "":
+                    await ctx.send("No location specified. Use `[p]autopostset location`.")
+                    return
+                else:
+                    pass
                     
+                # perform check on autopost time
+                # if there's no value, set the value to current time
+                if posting_time == "":
+                    posting_time = datetime.now().timestamp()
+                    await self.config.guild(guild).autoposttime.set(posting_time)
+                    await ctx.send("No autopost time was set, defaulting to current time. This can be changed using `[p]autopostset time.`")
+                else:
+                    pass
+                
+                # convert time from string to int for comparison purposes
+                posting_time = int(posting_time)
+                
+                # figure out units (degrees C/F)
+                bot_units = await self.config.units()
+                guild_units = None
+                if guild:
+                    guild_units = await self.config.guild(guild).units()
+                user_units = await self.config.user(author).units()
+                units = "metric"#default to C, not F
+                if bot_units:
+                    units = bot_units
+                if guild_units:
+                    units = guild_units
+                if user_units:
+                    units = user_units
+                
+                while datetime.now().timestamp() > posting_time:
+                
                     await ctx.trigger_typing()
-                    
-                    # figure out units (degrees C/F)
-                    bot_units = await self.config.units()
-                    guild_units = None
-                    if guild:
-                        guild_units = await self.config.guild(guild).units()
-                    user_units = await self.config.user(author).units()
-                    units = "metric"#default to C, not F
-                    if bot_units:
-                        units = bot_units
-                    if guild_units:
-                        units = guild_units
-                    if user_units:
-                        units = user_units
                     
                     # construct the URL to query weather API with
                     params = {"appid": "88660f6af079866a3ef50f491082c386", "units": units}#TrustyJAID's API key!
-                    location = await self.config.guild(guild).autopostlocation()
-                    if location == "":
-                        await ctx.send("No location specified. Use `[p]autopostset location`.")
-                        return
-                    else:
-                        pass
                     params["q"] = str(location)#other methods for weather format not supported in autopost
-                    
+                            
                     url = "https://api.openweathermap.org/data/2.5/forecast/daily?{0}".format(urlencode(params))
                     
                     # query weather API with constructed URL
                     async with aiohttp.ClientSession() as session:
                         async with session.get(url) as resp:
-                                data = await resp.json()
+                            data = await resp.json()
                     try:
                         if data["message"] == "city not found":
-                                await ctx.send("City not found.")
-                                return
+                            await ctx.send("City not found.")
+                            return
                     except Exception:
                         pass
-                    
+                            
                     # moved this check to start to improve responsiveness / performance on-error
                     try:
                         country = data["city"]["country"]
                     except KeyError:
                         country = ""
-                    
+                            
                     # figure out values for main message
                     mintemp = data["list"][0]["temp"]["min"]
                     maxtemp = data["list"][0]["temp"]["max"]
@@ -486,10 +495,10 @@ class Autopost(commands.Cog):
                     descmain3 = "{0:.0f}% cloudy, {1:.0f}% pop".format(clouds, probprecip)
                     descmain = descmain1 + "\n" + descmain2 + ", " + descmain3#should add an if/else that adds rain/snow etc in mm if it exists in the data e.g. 95% pop (3mm rain)
                     
-                    desc1 = "**Morning:** {0:.1f} ({2:.1f}){1}".format(morn, self.unit[units]["temp"], mornfeels)
-                    desc2 = "**Day:** {0:.1f} ({2:.1f}){1}".format(day, self.unit[units]["temp"], dayfeels)
-                    desc3 = "**Evening:** {0:.1f} ({2:.1f}){1}".format(eve, self.unit[units]["temp"], evefeels)
-                    desc4 = "**Night:** {0:.1f} ({2:.1f}){1}".format(night, self.unit[units]["temp"], nightfeels)
+                    desc1 = "**Morning:** {0:.1f} (feels {2:.1f}){1}".format(morn, self.unit[units]["temp"], mornfeels)
+                    desc2 = "**Day:** {0:.1f} (feels {2:.1f}){1}".format(day, self.unit[units]["temp"], dayfeels)
+                    desc3 = "**Evening:** {0:.1f} (feels {2:.1f}){1}".format(eve, self.unit[units]["temp"], evefeels)
+                    desc4 = "**Night:** {0:.1f} (feels {2:.1f}){1}".format(night, self.unit[units]["temp"], nightfeels)
                     
                     embed.description = descmain + "\n\n" + desc1 + "\n" + desc2 + "\n" + desc3 + "\n" + desc4
                     
@@ -501,46 +510,18 @@ class Autopost(commands.Cog):
                     embed.set_footer(text=_("Powered by https://openweathermap.org"))
                     
                     # send constructed message
-                    # (if channel specified, send there, else default to where the autopost command was sent)
-                    # (if time specified, send then, else default to when the autopost command was sent)
-                    savedchannel = await self.config.guild(ctx.guild).autopostchannel()
-                    savedtime = await self.config.guild(ctx.guild).autoposttime()
-                    if savedchannel == "":
-                        await self.config.guild(ctx.guild).autopostchannel.set(ctx.channel.id)#make >this< channel the saved channel if nothing is set
-                        await ctx.send("No channel was set, defaulting to current channel. This can be changed using `[p]autopostset channel`")
-                    if savedtime == "":
-                        await self.config.guild(ctx.guild).autopostchannel.set(datetime.now().timestamp())
-                        savedtime = await self.config.guild(ctx.guild).autoposttime()# so we can increment it
-                        await ctx.send("No time was set, defaulting to current time. This can be changed using `[p]autopostset time`")
-                    
-                    sendchannel = ctx.guild.get_channel(int(savedchannel))
-                    await ctx.send(guild.id)
-                    await ctx.send(ctx.guild.id)
-                    await ctx.send(str(savedchannel))#diag
-                    await ctx.send(str(sendchannel))#diag
+                    sendchannel = ctx.guild.get_channel(int(posting_channel))
                     await sendchannel.send(embed=embed)
                     
-                    # increment saved time
-                    await self.config.guild(ctx.guild).autoposttime.set(int(savedtime) + 86400)#86400 is a full day in seconds
-                    countdown += 1#prevent spam
-                
-                else:
-                    if countdown == 0:#prevent spam
-                        awaitingtime = await self.config.guild(ctx.guild).autoposttime()
-                        await ctx.send("Autopost active. Awaiting specified time of <t:" + str(awaitingtime) + ">...")
-                        countdown += 1
-            
+                    # increment the value of posting_time by 24 hours until it exceeds the current time
+                    # (this approach is helpful if the bot is ever offline for more than a day at a time)
+                    while datetime.now().timestamp() > posting_time:
+                        posting_time += 86400
+                    
+                    # save the posting_time value to file
+                    await self.config.guild(guild).autoposttime.set(posting_time)
             else:
-                switch = await self.config.guild(ctx.guild).autopoststate()#not used during normal usage, so no need to optimise efficiency
-                messages = 0
-                if switch == False:
-                    if messages < 1:
-                        print("Autopost switch is off. Use `[p]autopost_switch`.")
-                        await ctx.send("Autopost switch is off. Use `[p]autopost_switch`.")
-                        messages += 1
-                else:#handles bad value set
-                    if messages < 1:
-                        await ctx.send(_("Autopost switch is currently set to ") + str(switch))
-                        messages += 1
+                pass
             
-            await asyncio.sleep(25)#example values that I think are reasonable and sane: 5 (good for testing), 25, 55; you can go higher if you're running on a potato etc
+            # wait for a while (whether or not we autoposted)
+            await asyncio.sleep(5)
