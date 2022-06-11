@@ -4,7 +4,7 @@ Cogs (plugins) for [Red](https://github.com/Cog-Creators/Red-DiscordBot), a Disc
 ## Cog list
 | Cog | Description |
 |---|---|
-| autopost_v3 | <details><summary>Automatically posts daily weather forecasts, and displays weather summary on-command for a given location.</summary> Primary commands: `[p]autopost` and `[p]weathershort`. Uses `[p]autopost_switch`, then `[p]autopost` to start autoposting. ![Example of weathershort, using the "ws" command alias.](https://i.imgur.com/3Rrmxaa.png).</details> |
+| autopost_v3 | <details><summary>Automatically posts daily weather forecasts, and displays weather summary on-command for a given location.</summary> Primary commands: `[p]autopost` and `[p]weathershort` (alias `[p]ws`). ![Example of weathershort, using the "ws" command alias.](https://i.imgur.com/3Rrmxaa.png).</details> |
 | ronrobtaunts | <details><summary>Automatically responds to messages with corresponding Rise of Babel taunts (from Rise of Nations).</summary>Very simple cog, made in a couple of hours. Does not convert or remove #ICON text. ![Example of RoB taunts 138 and 879.](https://i.imgur.com/jxUm630.png).</details> |
 
 ## Credits
