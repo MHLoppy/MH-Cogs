@@ -39,9 +39,9 @@ class Autopost(commands.Cog):
     """Posts weather from https://openweathermap.org"""
 
     __author__ = ["MHLoppy"]
-    __version__ = "3.2.0"
+    __version__ = "3.2.2"
 
-    async def __init__(self, bot):
+    def __init__(self, bot):
         self.bot = bot
         self.config = Config.get_conf(self, 354298042)#replaced unique ID with a new randomly generated value from random.org
         default = {"units": None}
@@ -59,7 +59,7 @@ class Autopost(commands.Cog):
             "metric": {"code": ["m", "c"], "speed": "km/h", "temp": " °C"},
         }
 
-    async def format_help_for_context(self, ctx: commands.Context) -> str:
+    def format_help_for_context(self, ctx: commands.Context) -> str:
         """
         Thanks Sinbad!
         """
