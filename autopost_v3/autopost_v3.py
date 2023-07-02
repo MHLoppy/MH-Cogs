@@ -94,7 +94,7 @@ class Autopost(commands.Cog):
         `location` must take the form of `city, Country Code`
         example: `[p]weathershort New York,US`
         """
-        await ctx.trigger_typing()
+        await ctx.typing()
         await self.get_weathershort(ctx, location=location)
 
     @weathershort.command(name="zip")
@@ -106,7 +106,7 @@ class Autopost(commands.Cog):
         `zipcode` must be a valid ZIP code or `ZIP code, Country Code` (assumes US otherwise)
         example: `[p]weathershort zip 20500`
         """
-        await ctx.trigger_typing()
+        await ctx.typing()
         await self.get_weathershort(ctx, zipcode=zipcode)
 
     @weathershort.command(name="cityid")
@@ -119,7 +119,7 @@ class Autopost(commands.Cog):
         (get list here: <https://bulk.openweathermap.org/sample/city.list.json.gz>)
         example: `[p]weathershort cityid 2172797`
         """
-        await ctx.trigger_typing()
+        await ctx.typing()
         await self.get_weathershort(ctx, cityid=cityid)
 
     @commands.group(name="autopostset")
@@ -424,7 +424,7 @@ class Autopost(commands.Cog):
                 
                 while datetime.now().timestamp() > posting_time:
                 
-                    await ctx.trigger_typing()
+                    await ctx.typing()
                     
                     # construct the URL to query weather API with
                     params = {"appid": "88660f6af079866a3ef50f491082c386", "units": units}#TrustyJAID's API key!
