@@ -1,5 +1,4 @@
 from .ronrobtaunts import RonRobTaunts
 
-def setup(bot):
-    n = RonRobTaunts(bot)
-    bot.add_cog(n)
+async def setup(bot):
+    await bot.add_cog(RonRobTaunts(bot))
