@@ -62,7 +62,7 @@ class RonPicker(commands.Cog):
 
     @commands.command(aliases=["pick"])
     async def pick_nations(self, ctx, players: Optional[int] = 8):
-        """Pick random nations (duplicates allowed)."""
+        """Pick random nations (duplicates allowed, no spoiler tags)."""
         
         # Generate specified number of random numbers between 0 and 23 inclusive
         random_integers = np.random.randint(1, 24, size=players)
@@ -75,7 +75,7 @@ class RonPicker(commands.Cog):
 
     @commands.command(aliases=["pick2"])
     async def pick_nations_no_repeats(self, ctx, players: Optional[int] = 8):
-        """Pick random nations (with no duplicates)."""
+        """Pick random nations (with no duplicates, no spoiler tags)."""
 
         # Generate specified number of random numbers between 0 and 23 inclusive, without duplicates
         random_integers = np.random.choice(24, size=players, replace=False)
@@ -86,9 +86,9 @@ class RonPicker(commands.Cog):
 
         await ctx.send(f"The random nations are:\n{formatted_nations}")
 
-    @commands.command(aliases=["pickvis"])
+    @commands.command(aliases=["pick_s"])
     async def pick_nations(self, ctx, players: Optional[int] = 8):
-        """Pick random nations (duplicates allowed, no spoilers)."""
+        """Pick random nations (duplicates allowed, with spoiler tags)."""
         
         # Generate specified number of random numbers between 0 and 23 inclusive
         random_integers = np.random.randint(1, 24, size=players)
@@ -99,9 +99,9 @@ class RonPicker(commands.Cog):
 
         await ctx.send(f"The random nations are:\n{formatted_nations}")
 
-    @commands.command(aliases=["pickvis2"])
+    @commands.command(aliases=["pick_s2"])
     async def pick_nations_no_repeats(self, ctx, players: Optional[int] = 8):
-        """Pick random nations (with no duplicates, no spoilers)."""
+        """Pick random nations (with no duplicates, with spoiler tags)."""
 
         # Generate specified number of random numbers between 0 and 23 inclusive, without duplicates
         random_integers = np.random.choice(24, size=players, replace=False)
