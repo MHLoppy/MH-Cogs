@@ -11,4 +11,4 @@ Cogs (plugins) for [Red](https://github.com/Cog-Creators/Red-DiscordBot), a Disc
 ## Credits
 * autopost_v3 is based on [TrustyJAID's weather cog](https://github.com/TrustyJAID/Trusty-cogs) and draws from my own [v2 version of the autopost cog](https://github.com/MHLoppy/Autopost-v2), which itself is based on a previous weather cog by rfilkins1992 & Will. The API key used is from TrustyJAID's cog!
 * ronrobtaunts is based on [Falcom's hiback cog](https://github.com/nmbook/FalcomBot-cogs), and obviously uses the [Rise of Babel taunt list from 2005](https://web.archive.org/web/20120502125628/http://mastersleague.net/Downloads/details/id=1.html) compiled by Fedomar of the Fish Sticks Foundation (the dead link on taunt 879 has been updated).
-* ronpicker's space-padding on its spoiler-tagged responses was aided by [Justin Furuness](https://stackoverflow.com/a/62617715/16367940).
+* ronpicker's space-padding on its spoiler-tagged responses was aided by [Justin Furuness (and others)](https://stackoverflow.com/a/62617715/16367940).
