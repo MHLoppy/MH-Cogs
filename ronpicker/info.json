@@ -1,0 +1,25 @@
+{
+    "author" : [
+		"MHLoppy"
+    ],
+    "description" : "Pick random nations for the game Rise of Nations, using much better randomization.",
+    "disabled" : false,
+    "hidden" : false,
+    "install_msg" : "Use `[p]pick [int]` to pick random nations with duplicates, or `[p]pick2 [int]` to pick random nations without duplicates. If no integer is specified, 8 nations are generated",
+    "max_bot_version" : "0.0.0",
+    "min_bot_version" : "3.5.0",
+    "min_python_version" : [
+        3,
+        7,
+        2
+    ],
+    "name" : "RonPicker",
+    "permissions" : [],
+    "required_cogs" : {},
+    "requirements" : [],
+    "short" : "Pick random RoN nations.",
+    "tags" : [
+        "utility"
+    ],
+    "type" : "COG"
+}

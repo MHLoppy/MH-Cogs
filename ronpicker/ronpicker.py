@@ -1,4 +1,5 @@
 from redbot.core import commands
+from typing import Optional
 from enum import Enum
 import numpy as np
 
@@ -59,8 +60,8 @@ class RonPicker(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command()
-    async def pick_nations(self, ctx, players: int = 8):
+    @commands.command(aliases=["pick"])
+    async def pick_nations(self, ctx, players: Optional[int] = 8):
         """Pick random nations (duplicates allowed)."""
         
         # Generate specified number of random numbers between 0 and 23 inclusive
@@ -72,8 +73,8 @@ class RonPicker(commands.Cog):
 
         await ctx.send(f"The random nations are:\n{formatted_nations}")
 
-    @commands.command()
-    async def pick_nations_no_repeats(self, ctx, players: int = 8):
+    @commands.command(aliases=["pick2"])
+    async def pick_nations_no_repeats(self, ctx, players: Optional[int] = 8):
         """Pick random nations (with no duplicates)."""
 
         # Generate specified number of random numbers between 0 and 23 inclusive, without duplicates
