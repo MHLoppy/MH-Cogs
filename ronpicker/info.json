@@ -16,7 +16,9 @@
     "name" : "RonPicker",
     "permissions" : [],
     "required_cogs" : {},
-    "requirements" : [],
+    "requirements" : [
+        "numpy"
+    ],
     "short" : "Pick random RoN nations.",
     "tags" : [
         "utility"
