@@ -37,7 +37,7 @@ def emojify_color(color: int) -> str:
     # elif color == 2:
     #     return "🟦"
     elif color == 2:
-        return "🅿"
+        return "☑️"
     elif color == 3:
         return "🟪"
     elif color == 4:
