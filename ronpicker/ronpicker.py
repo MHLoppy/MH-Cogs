@@ -65,9 +65,9 @@ class RonPicker(commands.Cog):
         """Pick random nations (duplicates allowed, no spoiler tags)."""
         
         # Generate specified number of random numbers between 0 and 23 inclusive
-        random_integers = np.random.randint(1, 24, size=players)
+        random_integers = np.random.randint(low=0, high=24, size=players)
 
-        # Convert to nations and format nicely, with spoiler tags for each nation
+        # Convert to nations and format nicely, with no spoiler tags for each nation
         formatted_nations = [("* " + emojify_color(i+1) + f" Player {i+1}: `" + f"{Nation(int_value).name:<9}"+ "`") for i, int_value in enumerate(random_integers)]
         formatted_nations = "\n".join(formatted_nations)
 
@@ -80,7 +80,7 @@ class RonPicker(commands.Cog):
         # Generate specified number of random numbers between 0 and 23 inclusive, without duplicates
         random_integers = np.random.choice(24, size=players, replace=False)
 
-        # Convert to nations and format nicely, with spoiler tags for each nation
+        # Convert to nations and format nicely, with no spoiler tags for each nation
         formatted_nations = [("* " + emojify_color(i+1) + f" Player {i+1}: `" + f"{Nation(int_value).name:<9}"+ "`") for i, int_value in enumerate(random_integers)]
         formatted_nations = "\n".join(formatted_nations)
 
@@ -91,7 +91,7 @@ class RonPicker(commands.Cog):
         """Pick random nations (duplicates allowed, with spoiler tags)."""
         
         # Generate specified number of random numbers between 0 and 23 inclusive
-        random_integers = np.random.randint(1, 24, size=players)
+        random_integers = np.random.randint(low=0, high=24, size=players)
 
         # Convert to nations and format nicely, with spoiler tags for each nation
         formatted_nations = [("* " + emojify_color(i+1) + f" Player {i+1}: ||`" + f"{Nation(int_value).name:<9}"+ "`||") for i, int_value in enumerate(random_integers)]
