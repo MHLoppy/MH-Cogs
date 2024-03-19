@@ -6,7 +6,7 @@ Cogs (plugins) for [Red](https://github.com/Cog-Creators/Red-DiscordBot), a Disc
 |---|---|
 | autopost_v3 | <details><summary>Automatically posts daily weather forecasts, and displays weather summary on-command for a given location.</summary> Primary commands: `[p]autopost` and `[p]weathershort` (alias `[p]ws`). ![Example of weathershort, using the "ws" command alias.](https://i.imgur.com/3Rrmxaa.png).</details> |
 | ronrobtaunts | <details><summary>Automatically responds to messages with corresponding Rise of Babel taunts (from Rise of Nations).</summary>Very simple cog, made in a couple of hours. Does not convert or remove #ICON text. ![Example of RoB taunts 138 and 879.](https://i.imgur.com/jxUm630.png).</details> |
-| ronpicker | <details><summary>Picks random nations for Rise of Nations, since the built-in RNG is bad.</summary> Commands: `[p]pick [int]` (allows dupes) and `[p]pick2 [int]` (no dupes). Not specifying the int will default to 8. ![Example of pick.](https://i.imgur.com/ahYTH7R.png).</details> |
+| ronpicker | <details><summary>Picks random nations for Rise of Nations, since the built-in RNG is bad.</summary> Commands: `[p]pick` and `[p]pick_s` allows dupes, `[p]pick2` and `[p]pick_s2` don't. Player count default to 8. ![Example of pick.](https://i.imgur.com/ahYTH7R.png).</details> |
 
 ## Credits
 * autopost_v3 is based on [TrustyJAID's weather cog](https://github.com/TrustyJAID/Trusty-cogs) and draws from my own [v2 version of the autopost cog](https://github.com/MHLoppy/Autopost-v2), which itself is based on a previous weather cog by rfilkins1992 & Will. The API key used is from TrustyJAID's cog!
