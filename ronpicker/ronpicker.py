@@ -87,7 +87,7 @@ class RonPicker(commands.Cog):
         await ctx.send(f"The random nations are:\n{formatted_nations}")
 
     @commands.command(aliases=["pick_s"])
-    async def pick_nations(self, ctx, players: Optional[int] = 8):
+    async def pick_nations_spoilers(self, ctx, players: Optional[int] = 8):
         """Pick random nations (duplicates allowed, with spoiler tags)."""
         
         # Generate specified number of random numbers between 0 and 23 inclusive
@@ -100,7 +100,7 @@ class RonPicker(commands.Cog):
         await ctx.send(f"The random nations are:\n{formatted_nations}")
 
     @commands.command(aliases=["pick_s2"])
-    async def pick_nations_no_repeats(self, ctx, players: Optional[int] = 8):
+    async def pick_nations_spoilers_no_repeats(self, ctx, players: Optional[int] = 8):
         """Pick random nations (with no duplicates, with spoiler tags)."""
 
         # Generate specified number of random numbers between 0 and 23 inclusive, without duplicates
