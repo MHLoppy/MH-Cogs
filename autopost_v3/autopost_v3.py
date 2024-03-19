@@ -78,6 +78,7 @@ class Autopost(commands.Cog):
         await self.config.user_from_id(user_id).clear()
 
     @commands.group(name="autopost", invoke_without_command=True)
+    @checks.mod_or_permissions(manage_messages=True)
     @commands.bot_has_permissions(embed_links=True)
     async def autopost(self, ctx: commands.Context) -> None:
         """
@@ -211,6 +212,7 @@ class Autopost(commands.Cog):
         await self.config.guild(guild).autopostlocation.set(location)
         await ctx.send(_("Server's autopost location set to " + location + "."))
         
+    @checks.mod_or_permissions(manage_messages=True)
     @commands.group(name="autopost_switch")
     async def autopost_switch(self, ctx: commands.Context) -> None:
         """
