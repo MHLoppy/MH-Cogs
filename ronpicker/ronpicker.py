@@ -85,3 +85,29 @@ class RonPicker(commands.Cog):
         formatted_nations = "\n".join(formatted_nations)
 
         await ctx.send(f"The random nations are:\n{formatted_nations}")
+
+    @commands.command(aliases=["pickvis"])
+    async def pick_nations(self, ctx, players: Optional[int] = 8):
+        """Pick random nations (duplicates allowed, no spoilers)."""
+        
+        # Generate specified number of random numbers between 0 and 23 inclusive
+        random_integers = np.random.randint(1, 24, size=players)
+
+        # Convert to nations and format nicely, with spoiler tags for each nation
+        formatted_nations = [("* " + emojify_color(i+1) + f" Player {i+1}: `" + f"{Nation(int_value).name:<9}"+ "`") for i, int_value in enumerate(random_integers)]
+        formatted_nations = "\n".join(formatted_nations)
+
+        await ctx.send(f"The random nations are:\n{formatted_nations}")
+
+    @commands.command(aliases=["pickvis2"])
+    async def pick_nations_no_repeats(self, ctx, players: Optional[int] = 8):
+        """Pick random nations (with no duplicates, no spoilers)."""
+
+        # Generate specified number of random numbers between 0 and 23 inclusive, without duplicates
+        random_integers = np.random.choice(24, size=players, replace=False)
+
+        # Convert to nations and format nicely, with spoiler tags for each nation
+        formatted_nations = [("* " + emojify_color(i+1) + f" Player {i+1}: `" + f"{Nation(int_value).name:<9}"+ "`") for i, int_value in enumerate(random_integers)]
+        formatted_nations = "\n".join(formatted_nations)
+
+        await ctx.send(f"The random nations are:\n{formatted_nations}")
