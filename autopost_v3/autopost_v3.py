@@ -324,26 +324,47 @@ class Autopost(commands.Cog):
         weatheremoji = "❓"#better default for testing, and also diagnostically useful if the icon data changes
         
         weathericon = data["list"][0]["weather"][0]["icon"]
+        # if weathericon == "01d":
+            # weatheremoji = "☀"
+        # elif weathericon == "01n":
+            # weatheremoji = "🌙"
+        # elif "02" in weathericon:
+            # weatheremoji = "🌤"
+        # elif "03" in weathericon:
+            # weatheremoji = "🌥"
+        # elif "04" in weathericon:
+            # weatheremoji = "☁"
+        # elif "09" in weathericon:
+            # weatheremoji = "🌧"
+        # elif "10" in weathericon:
+            # weatheremoji = "🌦"
+        # elif "11" in weathericon:
+            # weatheremoji = "⛈"
+        # elif "13" in weathericon:
+            # weatheremoji = "❄"
+        # elif "53" in weathericon:
+            # weatheremoji = "🌫"
+            
         if weathericon == "01d":
-            weatheremoji = "☀"
+            weatheremoji = ":sunny:"
         elif weathericon == "01n":
-            weatheremoji = "🌙"
+            weatheremoji = ":crescent_moon:"
         elif "02" in weathericon:
-            weatheremoji = "🌤"
+            weatheremoji = ":white_sun_cloud:"
         elif "03" in weathericon:
-            weatheremoji = "🌥"
+            weatheremoji = ":white_sun_small_cloud:"
         elif "04" in weathericon:
-            weatheremoji = "☁"
+            weatheremoji = ":cloud:"
         elif "09" in weathericon:
-            weatheremoji = "🌧"
+            weatheremoji = ":cloud_rain:"
         elif "10" in weathericon:
-            weatheremoji = "🌦"
+            weatheremoji = ":white_sun_rain_cloud:"
         elif "11" in weathericon:
-            weatheremoji = "⛈"
+            weatheremoji = ":cloud_rain:"
         elif "13" in weathericon:
-            weatheremoji = "❄"
+            weatheremoji = ":snowflake:"
         elif "53" in weathericon:
-            weatheremoji = "🌫"
+            weatheremoji = ":fog:"
         
         embed.add_field(
             name=_(weatheremoji + " **Weather**"),
