@@ -58,6 +58,26 @@ def emojify_color(color: int) -> str:
         return "🟧"
 
 
+def playerify_color(color: int) -> str:
+
+    if color == 1:
+        return "P1"
+    elif color == 2:
+        return "P2"
+    elif color == 3:
+        return "P3"
+    elif color == 4:
+        return "P4"
+    elif color == 5:
+        return "P5"
+    elif color == 6:
+        return "P6"
+    elif color == 7:
+        return "P7"
+    elif color == 8:
+        return "P8"
+
+
 class RonPicker(commands.Cog):
     """Pick random nations for the game Rise of Nations, using much better randomization."""
 
@@ -72,7 +92,7 @@ class RonPicker(commands.Cog):
         random_integers = np.random.randint(low=0, high=24, size=players)
 
         # Convert to nations and format nicely, with no spoiler tags for each nation
-        formatted_nations = [("* " + emojify_color(i+1) + f": " + f"{Nation(int_value).name}") for i, int_value in enumerate(random_integers)]
+        formatted_nations = [("* " + playerify_color(i+1) + f": " + f"{Nation(int_value).name}") for i, int_value in enumerate(random_integers)]
         formatted_nations = "\n".join(formatted_nations)
 
         await ctx.send(f"The random nations are:\n{formatted_nations}")
@@ -85,7 +105,7 @@ class RonPicker(commands.Cog):
         random_integers = np.random.choice(24, size=players, replace=False)
 
         # Convert to nations and format nicely, with no spoiler tags for each nation
-        formatted_nations = [("* " + emojify_color(i+1) + f": " + f"{Nation(int_value).name}") for i, int_value in enumerate(random_integers)]
+        formatted_nations = [("* " + playerify_color(i+1) + f": " + f"{Nation(int_value).name}") for i, int_value in enumerate(random_integers)]
         formatted_nations = "\n".join(formatted_nations)
 
         await ctx.send(f"The random nations are:\n{formatted_nations}")
@@ -98,7 +118,7 @@ class RonPicker(commands.Cog):
         random_integers = np.random.randint(low=0, high=24, size=players)
 
         # Convert to nations and format nicely, with spoiler tags for each nation
-        formatted_nations = [("* " + emojify_color(i+1) + f": ||`" + f"{Nation(int_value).name:<9}"+ "`||") for i, int_value in enumerate(random_integers)]
+        formatted_nations = [("* " + playerify_color(i+1) + f": ||`" + f"{Nation(int_value).name:<9}"+ "`||") for i, int_value in enumerate(random_integers)]
         formatted_nations = "\n".join(formatted_nations)
 
         await ctx.send(f"The random nations are:\n{formatted_nations}")
@@ -111,7 +131,7 @@ class RonPicker(commands.Cog):
         random_integers = np.random.choice(24, size=players, replace=False)
 
         # Convert to nations and format nicely, with spoiler tags for each nation
-        formatted_nations = [("* " + emojify_color(i+1) + f": ||`" + f"{Nation(int_value).name:<9}"+ "`||") for i, int_value in enumerate(random_integers)]
+        formatted_nations = [("* " + playerify_color(i+1) + f": ||`" + f"{Nation(int_value).name:<9}"+ "`||") for i, int_value in enumerate(random_integers)]
         formatted_nations = "\n".join(formatted_nations)
 
         await ctx.send(f"The random nations are:\n{formatted_nations}")
