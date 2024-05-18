@@ -2,10 +2,12 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+import discord
+import numpy as np
+
+from enum import Enum
 from redbot.core import commands
 from typing import Optional
-from enum import Enum
-import numpy as np
 
 
 class Nation(Enum):
