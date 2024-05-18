@@ -98,7 +98,7 @@ class RonPicker(commands.Cog):
         formatted_nations = "\n".join(formatted_nations)
 
         # Construct and send an embed message
-        embed = discord.Embed(colour=discord.Colour.darkorange())
+        embed = discord.Embed(colour=discord.Colour.dark_orange())
         embed.title = "Random nations"
         embed.description = formatted_nations
 
@@ -117,7 +117,7 @@ class RonPicker(commands.Cog):
         formatted_nations = "\n".join(formatted_nations)
 
                 # Construct and send an embed message
-        embed = discord.Embed(colour=discord.Colour.darkorange())
+        embed = discord.Embed(colour=discord.Colour.dark_orange())
         embed.title = "Random nations"
         embed.description = formatted_nations
 
@@ -136,7 +136,7 @@ class RonPicker(commands.Cog):
         formatted_nations = "\n".join(formatted_nations)
 
                 # Construct and send an embed message
-        embed = discord.Embed(colour=discord.Colour.darkorange())
+        embed = discord.Embed(colour=discord.Colour.dark_orange())
         embed.title = "Random nations"
         embed.description = formatted_nations
 
@@ -155,7 +155,7 @@ class RonPicker(commands.Cog):
         formatted_nations = "\n".join(formatted_nations)
 
                 # Construct and send an embed message
-        embed = discord.Embed(colour=discord.Colour.darkorange())
+        embed = discord.Embed(colour=discord.Colour.dark_orange())
         embed.title = "Random nations"
         embed.description = formatted_nations
 
