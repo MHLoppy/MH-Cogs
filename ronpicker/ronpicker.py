@@ -92,10 +92,16 @@ class RonPicker(commands.Cog):
         random_integers = np.random.randint(low=0, high=24, size=players)
 
         # Convert to nations and format nicely, with no spoiler tags for each nation
-        formatted_nations = [("* **" + playerify_color(i+1) + f":** " + f"{Nation(int_value).name}") for i, int_value in enumerate(random_integers)]
+        formatted_nations = [("* `" + playerify_color(i+1) + f":` " + f"{Nation(int_value).name}") for i, int_value in enumerate(random_integers)]
         formatted_nations = "\n".join(formatted_nations)
 
-        await ctx.send(f"The random nations are:\n{formatted_nations}")
+        # Construct and send an embed message
+        embed = discord.Embed(colour=discord.Colour.darkorange())
+        embed.title = "Random nations"
+        embed.description = formatted_nations
+
+        #await ctx.send(f"The random nations are:\n{formatted_nations}")
+        await ctx.send(embed=embed)
 
     @commands.command(aliases=["pick2"])
     async def pick_nations_no_repeats(self, ctx, players: Optional[int] = 8):
@@ -105,10 +111,16 @@ class RonPicker(commands.Cog):
         random_integers = np.random.choice(24, size=players, replace=False)
 
         # Convert to nations and format nicely, with no spoiler tags for each nation
-        formatted_nations = [("* **" + playerify_color(i+1) + f":** " + f"{Nation(int_value).name}") for i, int_value in enumerate(random_integers)]
+        formatted_nations = [("* `" + playerify_color(i+1) + f":` " + f"{Nation(int_value).name}") for i, int_value in enumerate(random_integers)]
         formatted_nations = "\n".join(formatted_nations)
 
-        await ctx.send(f"The random nations are:\n{formatted_nations}")
+                # Construct and send an embed message
+        embed = discord.Embed(colour=discord.Colour.darkorange())
+        embed.title = "Random nations"
+        embed.description = formatted_nations
+
+        #await ctx.send(f"The random nations are:\n{formatted_nations}")
+        await ctx.send(embed=embed)
 
     @commands.command(aliases=["pick_s"])
     async def pick_nations_spoilers(self, ctx, players: Optional[int] = 8):
@@ -118,10 +130,16 @@ class RonPicker(commands.Cog):
         random_integers = np.random.randint(low=0, high=24, size=players)
 
         # Convert to nations and format nicely, with spoiler tags for each nation
-        formatted_nations = [("* **" + playerify_color(i+1) + f":** ||`" + f"{Nation(int_value).name:<9}"+ "`||") for i, int_value in enumerate(random_integers)]
+        formatted_nations = [("* `" + playerify_color(i+1) + f":` ||`" + f"{Nation(int_value).name:<9}"+ "`||") for i, int_value in enumerate(random_integers)]
         formatted_nations = "\n".join(formatted_nations)
 
-        await ctx.send(f"The random nations are:\n{formatted_nations}")
+                # Construct and send an embed message
+        embed = discord.Embed(colour=discord.Colour.darkorange())
+        embed.title = "Random nations"
+        embed.description = formatted_nations
+
+        #await ctx.send(f"The random nations are:\n{formatted_nations}")
+        await ctx.send(embed=embed)
 
     @commands.command(aliases=["pick_s2"])
     async def pick_nations_spoilers_no_repeats(self, ctx, players: Optional[int] = 8):
@@ -131,7 +149,13 @@ class RonPicker(commands.Cog):
         random_integers = np.random.choice(24, size=players, replace=False)
 
         # Convert to nations and format nicely, with spoiler tags for each nation
-        formatted_nations = [("* **" + playerify_color(i+1) + f":** ||`" + f"{Nation(int_value).name:<9}"+ "`||") for i, int_value in enumerate(random_integers)]
+        formatted_nations = [("* `" + playerify_color(i+1) + f":` ||`" + f"{Nation(int_value).name:<9}"+ "`||") for i, int_value in enumerate(random_integers)]
         formatted_nations = "\n".join(formatted_nations)
 
-        await ctx.send(f"The random nations are:\n{formatted_nations}")
+                # Construct and send an embed message
+        embed = discord.Embed(colour=discord.Colour.darkorange())
+        embed.title = "Random nations"
+        embed.description = formatted_nations
+
+        #await ctx.send(f"The random nations are:\n{formatted_nations}")
+        await ctx.send(embed=embed)
