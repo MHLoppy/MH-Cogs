@@ -116,7 +116,7 @@ class RonPicker(commands.Cog):
         formatted_nations = [("* `" + playerify_color(i+1) + f":` " + f"{Nation(int_value).name}") for i, int_value in enumerate(random_integers)]
         formatted_nations = "\n".join(formatted_nations)
 
-                # Construct and send an embed message
+        # Construct and send an embed message
         embed = discord.Embed(colour=discord.Colour.dark_orange())
         embed.title = "Random nations"
         embed.description = formatted_nations
@@ -135,7 +135,7 @@ class RonPicker(commands.Cog):
         formatted_nations = [("* `" + playerify_color(i+1) + f":` ||`" + f"{Nation(int_value).name:<9}"+ "`||") for i, int_value in enumerate(random_integers)]
         formatted_nations = "\n".join(formatted_nations)
 
-                # Construct and send an embed message
+        # Construct and send an embed message
         embed = discord.Embed(colour=discord.Colour.dark_orange())
         embed.title = "Random nations"
         embed.description = formatted_nations
@@ -154,7 +154,7 @@ class RonPicker(commands.Cog):
         formatted_nations = [("* `" + playerify_color(i+1) + f":` ||`" + f"{Nation(int_value).name:<9}"+ "`||") for i, int_value in enumerate(random_integers)]
         formatted_nations = "\n".join(formatted_nations)
 
-                # Construct and send an embed message
+        # Construct and send an embed message
         embed = discord.Embed(colour=discord.Colour.dark_orange())
         embed.title = "Random nations"
         embed.description = formatted_nations
