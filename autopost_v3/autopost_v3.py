@@ -133,7 +133,7 @@ class Autopost(commands.Cog):
         example: `[p]weathershort New York,US`
         """
         await ctx.typing()
-        await self.get_weathershort(ctx, location=location)
+        await self.get_weathercurrent(ctx, location=location)
 
     @commands.group(name="autopostset")
     async def autopost_set(self, ctx: commands.Context) -> None:
