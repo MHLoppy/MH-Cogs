@@ -512,8 +512,8 @@ class Autopost(commands.Cog):
             weatheremoji = ":fog:"
         
         embed.add_field(
-            name=_(weatheremoji + " **Forecast**"),
-            value="{0:.2f}-{1:.2f}{2},\n{4}".format(
+            name=_(weatheremoji + " **Tomorrow**"),
+            value="{0:.2f}-{1:.2f}{2},\n{3}".format(
                 forecast_min, forecast_max,
                 self.unit[units]["temp"], condition
             ),
