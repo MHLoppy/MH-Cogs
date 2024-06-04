@@ -486,7 +486,7 @@ class Autopost(commands.Cog):
         #weatheremoji = "\N{WHITE SUN WITH SMALL CLOUD}"#default
         weatheremoji = "❓"#better default for testing, and also diagnostically useful if the icon data changes
         
-        weathericon = data["list"][1]["weather"][1]["icon"]
+        weathericon = data["list"][1]["weather"][0]["icon"]
             
         if weathericon == "01d":
             weatheremoji = ":sunny:"
