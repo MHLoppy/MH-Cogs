@@ -86,6 +86,8 @@ class Autopost(commands.Cog):
         """
         await self.autopost_loop(ctx)
 
+
+
     @commands.group(name="weathershort", aliases=["ws", "we2"], invoke_without_command=True)
     @commands.bot_has_permissions(embed_links=True)
     async def weathershort(self, ctx: commands.Context, *, location: str) -> None:
@@ -98,42 +100,54 @@ class Autopost(commands.Cog):
         await ctx.typing()
         await self.get_weathershort(ctx, location=location)
 
-    @weathershort.command(name="zip")
-    @commands.bot_has_permissions(embed_links=True)
-    async def weathershort_by_zip(self, ctx: commands.Context, *, zipcode: str) -> None:
-        """
-        Show weather forecast (not current weather!) for a given location.
+    # @weathershort.command(name="zip")
+    # @commands.bot_has_permissions(embed_links=True)
+    # async def weathershort_by_zip(self, ctx: commands.Context, *, zipcode: str) -> None:
+        # """
+        # Show weather forecast (not current weather!) for a given location.
 
-        `zipcode` must be a valid ZIP code or `ZIP code, Country Code` (assumes US otherwise)
-        example: `[p]weathershort zip 20500`
-        """
-        await ctx.typing()
-        await self.get_weathershort(ctx, zipcode=zipcode)
+        # `zipcode` must be a valid ZIP code or `ZIP code, Country Code` (assumes US otherwise)
+        # example: `[p]weathershort zip 20500`
+        # """
+        # await ctx.typing()
+        # await self.get_weathershort(ctx, zipcode=zipcode)
 
-    @weathershort.command(name="cityid")
-    @commands.bot_has_permissions(embed_links=True)
-    async def weathershort_by_cityid(self, ctx: commands.Context, *, cityid: int) -> None:
-        """
-        Show weather forecast (not current weather!) for a given location.
+    # @weathershort.command(name="cityid")
+    # @commands.bot_has_permissions(embed_links=True)
+    # async def weathershort_by_cityid(self, ctx: commands.Context, *, cityid: int) -> None:
+        # """
+        # Show weather forecast (not current weather!) for a given location.
 
-        `cityid` must be a valid openweathermap city ID
-        (get list here: <https://bulk.openweathermap.org/sample/city.list.json.gz>)
-        example: `[p]weathershort cityid 2172797`
-        """
-        await ctx.typing()
-        await self.get_weathershort(ctx, cityid=cityid)
-        
-    @commands.group(name="weatherc", aliases=["wc"], invoke_without_command=True)
+        # `cityid` must be a valid openweathermap city ID
+        # (get list here: <https://bulk.openweathermap.org/sample/city.list.json.gz>)
+        # example: `[p]weathershort cityid 2172797`
+        # """
+        # await ctx.typing()
+        # await self.get_weathershort(ctx, cityid=cityid)
+
+    @commands.group(name="weather_forecast", aliases=["wc"], invoke_without_command=True)
     @commands.bot_has_permissions(embed_links=True)
-    async def weathercurrent(self, ctx: commands.Context, *, location: str) -> None:
+    async def weather_forecast(self, ctx: commands.Context, *, location: str) -> None:
         """
-        Show current weather (not a forecast!) for a given location.
+        Show a next-day weather forecast for a given location.
 
         `location` must take the form of `city, Country Code`
         example: `[p]weathershort New York,US`
         """
         await ctx.typing()
-        await self.get_weathercurrent(ctx, location=location)
+        await self.get_weather_forecast(ctx, location=location)
+
+    @commands.group(name="weathercurrent", aliases=["wc"], invoke_without_command=True)
+    @commands.bot_has_permissions(embed_links=True)
+    async def weather_current(self, ctx: commands.Context, *, location: str) -> None:
+        """
+        Show current weather for a given location.
+
+        `location` must take the form of `city, Country Code`
+        example: `[p]weathershort New York,US`
+        """
+        await ctx.typing()
+        await self.get_weather_current(ctx, location=location)
 
     @commands.group(name="autopostset")
     async def autopost_set(self, ctx: commands.Context) -> None:
@@ -256,7 +270,146 @@ class Autopost(commands.Cog):
         await self.config.guild(guild).autopoststate.set(False)
         await ctx.send(_("Autopost switch turned off."))
 
-    async def get_weathershort(
+    # async def get_weather_short(
+        # self,
+        # ctx: commands.Context,
+        # *,
+        # location: Optional[str] = None,
+        # zipcode: Optional[str] = None,
+        # cityid: Optional[int] = None,
+    # ) -> None:
+        # guild = ctx.message.guild
+        # author = ctx.message.author
+        
+        ##figure out units (degrees C/F)
+        # bot_units = await self.config.units()
+        # guild_units = None
+        # if guild:
+            # guild_units = await self.config.guild(guild).units()
+        # user_units = await self.config.user(author).units()
+        # units = "metric"#default to C, not F
+        # if bot_units:
+            # units = bot_units
+        # if guild_units:
+            # units = guild_units
+        # if user_units:
+            # units = user_units
+        
+        ##construct the URL to query weather API with
+        # params = {"appid": "614dad22d76feee3c9a8126044290e07", "units": units}#separate free-tier API key; not TrustyJAID's
+        
+        # if zipcode:
+            # params["zip"] = str(zipcode)
+        # elif cityid:
+            # params["id"] = str(cityid)
+        # else:
+            # params["q"] = str(location)
+        
+        # url = "https://api.openweathermap.org/data/2.5/forecast?{0}".format(urlencode(params))
+        
+        ##query weather API with constructed URL
+        # async with aiohttp.ClientSession() as session:
+            # async with session.get(url) as resp:
+                # data = await resp.json()
+        # try:
+            # if data["message"] == "city not found":
+                # await ctx.send("City not found.")
+                # return
+        # except Exception:
+            # pass
+        
+        ##figure out values for main message
+        # forecast_temp = data["list"][0]["main"]["temp"]
+        # forecast_feels = data["list"][0]["main"]["feels_like"]
+        # city = data["city"]["name"]
+        # try:
+            # country = data["city"]["country"]
+        # except KeyError:
+            # country = ""
+        ##condition = ", ".join(info["main"] for info in data["list"][0]["weather"])#one-word version
+        # condition = ", ".join(info["description"] for info in data["list"][0]["weather"])#short phrase version
+
+        ##construct main message using previous values
+        # embed = discord.Embed(colour=discord.Colour.dark_blue())
+        
+        ##since this isn't a reaction (but its own message), I guess using :emoji: is actually okay?
+        ##https://discordpy.readthedocs.io/en/latest/faq.html
+        # if len(city) and len(country):
+            # countrycodeleft = country[0].lower()
+            # countrycoderight = country[1].lower()
+            # flagcode = ":flag_" + countrycodeleft + countrycoderight + ":"
+            # embed.add_field(name=_(flagcode + " **Location**"), value="{0}, {1}".format(city, country))
+        # else:
+            # embed.add_field(
+                # name=_("\N{EARTH GLOBE AMERICAS} **Location**"),
+                # value=_("*Unavailable*")
+            # )
+        
+        ##dynamic weather emoji ::fingerguns::
+        ##weatheremoji = "\N{WHITE SUN WITH SMALL CLOUD}"#default
+        # weatheremoji = "❓"#better default for testing, and also diagnostically useful if the icon data changes
+        
+        # weathericon = data["list"][0]["weather"][0]["icon"]
+        ##if weathericon == "01d":
+        ##    weatheremoji = "☀"
+        ##elif weathericon == "01n":
+        ##    weatheremoji = "🌙"
+        ##elif "02" in weathericon:
+        ##    weatheremoji = "🌤"
+        ##elif "03" in weathericon:
+        ##    weatheremoji = "🌥"
+        ##elif "04" in weathericon:
+        ##    weatheremoji = "☁"
+        ##elif "09" in weathericon:
+        ##    weatheremoji = "🌧"
+        ##elif "10" in weathericon:
+        ##    weatheremoji = "🌦"
+        ##elif "11" in weathericon:
+        ##    weatheremoji = "⛈"
+        ##elif "13" in weathericon:
+        ##    weatheremoji = "❄"
+        ##elif "53" in weathericon:
+        ##    weatheremoji = "🌫"
+            
+        # if weathericon == "01d":
+            # weatheremoji = ":sunny:"
+        # elif weathericon == "01n":
+            # weatheremoji = ":crescent_moon:"
+        # elif "02" in weathericon:
+            # weatheremoji = ":white_sun_cloud:"
+        # elif "03" in weathericon:
+            # weatheremoji = ":white_sun_small_cloud:"
+        # elif "04" in weathericon:
+            # weatheremoji = ":cloud:"
+        # elif "09" in weathericon:
+            # weatheremoji = ":cloud_rain:"
+        # elif "10" in weathericon:
+            # weatheremoji = ":white_sun_rain_cloud:"
+        # elif "11" in weathericon:
+            # weatheremoji = ":cloud_rain:"
+        # elif "13" in weathericon:
+            # weatheremoji = ":snowflake:"
+        # elif "53" in weathericon:
+            # weatheremoji = ":fog:"
+        # elif "50" in weathericon:
+            # weatheremoji = ":fog:"
+        
+        # embed.add_field(
+            # name=_(weatheremoji + " **Forecast**"),
+            # value="{0:.2f}{1} (feels like {2:.2f}{3}),\n{4}".format(
+                # forecast_temp, self.unit[units]["temp"],
+                # forecast_feels, self.unit[units]["temp"],
+                # condition
+            # ),
+        # )
+        
+        ##message footer
+        # embed.set_footer(text=_("Powered by https://openweathermap.org"))
+        
+        ##send constructed message
+        # await ctx.send(embed=embed)
+
+    async def get_weather_forecast(
         self,
         ctx: commands.Context,
         *,
@@ -305,15 +458,15 @@ class Autopost(commands.Cog):
             pass
         
         # figure out values for main message
-        forecast_temp = data["list"][0]["main"]["temp"]
-        forecast_feels = data["list"][0]["main"]["feels_like"]
+        forecast_temp = data["list"][1]["main"]["temp"]
+        forecast_feels = data["list"][1]["main"]["feels_like"]
         city = data["city"]["name"]
         try:
             country = data["city"]["country"]
         except KeyError:
             country = ""
         #condition = ", ".join(info["main"] for info in data["list"][0]["weather"])#one-word version
-        condition = ", ".join(info["description"] for info in data["list"][0]["weather"])#short phrase version
+        condition = ", ".join(info["description"] for info in data["list"][1]["weather"])#short phrase version
 
         # construct main message using previous values
         embed = discord.Embed(colour=discord.Colour.dark_blue())
@@ -335,27 +488,7 @@ class Autopost(commands.Cog):
         #weatheremoji = "\N{WHITE SUN WITH SMALL CLOUD}"#default
         weatheremoji = "❓"#better default for testing, and also diagnostically useful if the icon data changes
         
-        weathericon = data["list"][0]["weather"][0]["icon"]
-        # if weathericon == "01d":
-            # weatheremoji = "☀"
-        # elif weathericon == "01n":
-            # weatheremoji = "🌙"
-        # elif "02" in weathericon:
-            # weatheremoji = "🌤"
-        # elif "03" in weathericon:
-            # weatheremoji = "🌥"
-        # elif "04" in weathericon:
-            # weatheremoji = "☁"
-        # elif "09" in weathericon:
-            # weatheremoji = "🌧"
-        # elif "10" in weathericon:
-            # weatheremoji = "🌦"
-        # elif "11" in weathericon:
-            # weatheremoji = "⛈"
-        # elif "13" in weathericon:
-            # weatheremoji = "❄"
-        # elif "53" in weathericon:
-            # weatheremoji = "🌫"
+        weathericon = data["list"][1]["weather"][1]["icon"]
             
         if weathericon == "01d":
             weatheremoji = ":sunny:"
@@ -395,7 +528,7 @@ class Autopost(commands.Cog):
         # send constructed message
         await ctx.send(embed=embed)
 
-    async def get_weathercurrent(
+    async def get_weather_current(
         self,
         ctx: commands.Context,
         *,
