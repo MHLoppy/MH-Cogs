@@ -86,19 +86,17 @@ class Autopost(commands.Cog):
         """
         await self.autopost_loop(ctx)
 
+    # @commands.group(name="weathershort", aliases=["ws", "we2"], invoke_without_command=True)
+    # @commands.bot_has_permissions(embed_links=True)
+    # async def weathershort(self, ctx: commands.Context, *, location: str) -> None:
+        # """
+        # Show weather forecast (not current weather!) for a given location.
 
-
-    @commands.group(name="weathershort", aliases=["ws", "we2"], invoke_without_command=True)
-    @commands.bot_has_permissions(embed_links=True)
-    async def weathershort(self, ctx: commands.Context, *, location: str) -> None:
-        """
-        Show weather forecast (not current weather!) for a given location.
-
-        `location` must take the form of `city, Country Code`
-        example: `[p]weathershort New York,US`
-        """
-        await ctx.typing()
-        await self.get_weathershort(ctx, location=location)
+        # `location` must take the form of `city, Country Code`
+        # example: `[p]weathershort New York,US`
+        # """
+        # await ctx.typing()
+        # await self.get_weathershort(ctx, location=location)
 
     # @weathershort.command(name="zip")
     # @commands.bot_has_permissions(embed_links=True)
