@@ -90,7 +90,7 @@ class Autopost(commands.Cog):
     @commands.bot_has_permissions(embed_links=True)
     async def weathershort(self, ctx: commands.Context, *, location: str) -> None:
         """
-        Show current weather for a given location
+        Show weather forecast (not current weather!) for a given location
 
         `location` must take the form of `city, Country Code`
         example: `[p]weathershort New York,US`
@@ -102,7 +102,7 @@ class Autopost(commands.Cog):
     @commands.bot_has_permissions(embed_links=True)
     async def weathershort_by_zip(self, ctx: commands.Context, *, zipcode: str) -> None:
         """
-        Show current weather for a given location
+        Show weather forecast (not current weather!) for a given location
 
         `zipcode` must be a valid ZIP code or `ZIP code, Country Code` (assumes US otherwise)
         example: `[p]weathershort zip 20500`
@@ -114,7 +114,7 @@ class Autopost(commands.Cog):
     @commands.bot_has_permissions(embed_links=True)
     async def weathershort_by_cityid(self, ctx: commands.Context, *, cityid: int) -> None:
         """
-        Show current weather for a given location
+        Show weather forecast (not current weather!) for a given location
 
         `cityid` must be a valid openweathermap city ID
         (get list here: <https://bulk.openweathermap.org/sample/city.list.json.gz>)
@@ -367,7 +367,7 @@ class Autopost(commands.Cog):
             weatheremoji = ":fog:"
         
         embed.add_field(
-            name=_(weatheremoji + " **Weather**"),
+            name=_(weatheremoji + " **Forecast**"),
             value="{0:.2f}{1} (feels like {2:.2f}{3}),\n{4}".format(
                 currenttemp, self.unit[units]["temp"],
                 currentfeels, self.unit[units]["temp"],
