@@ -377,6 +377,8 @@ class Autopost(commands.Cog):
             weatheremoji = ":snowflake:"
         elif "53" in weathericon:
             weatheremoji = ":fog:"
+        elif "50" in weathericon:
+            weatheremoji = ":fog:"
         
         embed.add_field(
             name=_(weatheremoji + " **Forecast**"),
@@ -492,6 +494,8 @@ class Autopost(commands.Cog):
         elif "13" in weathericon:
             weatheremoji = ":snowflake:"
         elif "53" in weathericon:
+            weatheremoji = ":fog:"
+        elif "50" in weathericon:
             weatheremoji = ":fog:"
         
         embed.add_field(
