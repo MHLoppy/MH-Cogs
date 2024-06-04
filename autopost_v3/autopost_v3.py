@@ -433,7 +433,7 @@ class Autopost(commands.Cog):
             units = user_units
         
         # construct the URL to query weather API with
-        params = {"appid": "614dad22d76feee3c9a8126044290e07", "units": units}#separate free-tier API key; not TrustyJAID's
+        params = {"appid": "88660f6af079866a3ef50f491082c386", "units": units}#TrustyJAID's API key!
         
         if zipcode:
             params["zip"] = str(zipcode)
@@ -442,7 +442,7 @@ class Autopost(commands.Cog):
         else:
             params["q"] = str(location)
         
-        url = "https://api.openweathermap.org/data/2.5/forecast?{0}".format(urlencode(params))
+        url = "https://api.openweathermap.org/data/2.5/forecast/daily?{0}".format(urlencode(params))
         
         # query weather API with constructed URL
         async with aiohttp.ClientSession() as session:
@@ -456,8 +456,8 @@ class Autopost(commands.Cog):
             pass
         
         # figure out values for main message
-        forecast_temp = data["list"][1]["main"]["temp"]
-        forecast_feels = data["list"][1]["main"]["feels_like"]
+        forecast_min = data["list"][1]["temp"]["min"]
+        forecast_max = data["list"][1]["temp"]["max"]
         city = data["city"]["name"]
         try:
             country = data["city"]["country"]
@@ -513,10 +513,9 @@ class Autopost(commands.Cog):
         
         embed.add_field(
             name=_(weatheremoji + " **Forecast**"),
-            value="{0:.2f}{1} (feels like {2:.2f}{3}),\n{4}".format(
-                forecast_temp, self.unit[units]["temp"],
-                forecast_feels, self.unit[units]["temp"],
-                condition
+            value="{0:.2f}-{1:.2f}{2},\n{4}".format(
+                forecast_min, forecast_max,
+                self.unit[units]["temp"], condition
             ),
         )
         
