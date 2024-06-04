@@ -39,7 +39,7 @@ class Autopost(commands.Cog):
     """Posts weather from https://openweathermap.org"""
 
     __author__ = ["MHLoppy"]
-    __version__ = "3.3.0"
+    __version__ = "3.4.0"
 
     def __init__(self, bot):
         self.bot = bot
