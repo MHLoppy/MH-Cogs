@@ -24,7 +24,7 @@ class RonRobTaunts(commands.Cog):
             # this is a DM or group DM, discard early
             return
 
-        if message.type != discord.MessageType.default:
+        if (message.type != discord.MessageType.default) and (message.type != discord.MessageType.reply):
             # this is a system message, discard early
             return
 
