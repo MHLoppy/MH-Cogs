@@ -123,7 +123,7 @@ class Autopost(commands.Cog):
         # await ctx.typing()
         # await self.get_weathershort(ctx, cityid=cityid)
 
-    @commands.group(name="weather_forecast", aliases=["wf"], invoke_without_command=True)
+    @commands.group(name="weather_forecast", aliases=["wf"])
     @commands.bot_has_permissions(embed_links=True)
     async def weather_forecast(self, ctx: commands.Context, *, location: str) -> None:
         """
@@ -135,7 +135,7 @@ class Autopost(commands.Cog):
         await ctx.typing()
         await self.get_weather_forecast(ctx, location=location)
 
-    @commands.group(name="weather_current", aliases=["wc"], invoke_without_command=True)
+    @commands.group(name="weather_current", aliases=["wc"])
     @commands.bot_has_permissions(embed_links=True)
     async def weather_current(self, ctx: commands.Context, *, location: str) -> None:
         """
