@@ -135,6 +135,7 @@ class Autopost(commands.Cog):
         """
         async with ctx.typing():
             await self.get_weather_forecast(ctx, location=location)
+            return
 
     @commands.group(name="weather_current", aliases=["wc"])
     @commands.bot_has_permissions(embed_links=True)
@@ -147,6 +148,7 @@ class Autopost(commands.Cog):
         """
         async with ctx.typing():
             await self.get_weather_current(ctx, location=location)
+            return
 
     @commands.group(name="autopostset")
     async def autopost_set(self, ctx: commands.Context) -> None:
