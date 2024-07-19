@@ -133,8 +133,8 @@ class Autopost(commands.Cog):
         `location` must take the form of `city, Country Code`
         example: `[p]weathershort New York,US`
         """
-        await ctx.typing()
-        await self.get_weather_forecast(ctx, location=location)
+        async with ctx.typing():
+            await self.get_weather_forecast(ctx, location=location)
 
     @commands.group(name="weather_current", aliases=["wc"])
     @commands.bot_has_permissions(embed_links=True)
@@ -145,8 +145,8 @@ class Autopost(commands.Cog):
         `location` must take the form of `city, Country Code`
         example: `[p]weathershort New York,US`
         """
-        await ctx.typing()
-        await self.get_weather_current(ctx, location=location)
+        async with ctx.typing():
+            await self.get_weather_current(ctx, location=location)
 
     @commands.group(name="autopostset")
     async def autopost_set(self, ctx: commands.Context) -> None:
