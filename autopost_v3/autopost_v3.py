@@ -125,6 +125,7 @@ class Autopost(commands.Cog):
 
     @commands.group(name="weather_forecast", aliases=["wf"])
     @commands.bot_has_permissions(embed_links=True)
+    @checks.mod_or_permissions(manage_messages=True)
     async def weather_forecast(self, ctx: commands.Context, *, location: str) -> None:
         """
         Show a next-day weather forecast for a given location.
