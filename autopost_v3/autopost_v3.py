@@ -123,7 +123,7 @@ class Autopost(commands.Cog):
         # await ctx.typing()
         # await self.get_weathershort(ctx, cityid=cityid)
 
-    @commands.group(name="weather_forecast", aliases=["wf"])
+    @commands.group(name="weather_forecast", aliases=["wf"], invoke_without_command=True)
     @commands.bot_has_permissions(embed_links=True)
     @checks.mod_or_permissions(manage_messages=True)
     async def weather_forecast(self, ctx: commands.Context, *, location: str) -> None:
@@ -133,11 +133,10 @@ class Autopost(commands.Cog):
         `location` must take the form of `city, Country Code`
         example: `[p]weathershort New York,US`
         """
-        async with ctx.typing():
-            await self.get_weather_forecast(ctx, location=location)
-            return
+        await ctx.typing()
+        await self.get_weather_forecast(ctx, location=location)
 
-    @commands.group(name="weather_current", aliases=["wc"])
+    @commands.group(name="weather_current", aliases=["wc"], invoke_without_command=True)
     @commands.bot_has_permissions(embed_links=True)
     async def weather_current(self, ctx: commands.Context, *, location: str) -> None:
         """
@@ -146,9 +145,8 @@ class Autopost(commands.Cog):
         `location` must take the form of `city, Country Code`
         example: `[p]weathershort New York,US`
         """
-        async with ctx.typing():
-            await self.get_weather_current(ctx, location=location)
-            return
+        await ctx.typing()
+        await self.get_weather_current(ctx, location=location)
 
     @commands.group(name="autopostset")
     async def autopost_set(self, ctx: commands.Context) -> None:
