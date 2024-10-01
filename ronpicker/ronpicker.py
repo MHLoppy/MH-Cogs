@@ -105,7 +105,7 @@ class RonPicker(commands.Cog):
         #await ctx.send(f"The random nations are:\n{formatted_nations}")
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=["pick2"])
+    @commands.command(aliases=["pick2, picku"])
     async def pick_nations_no_repeats(self, ctx, players: Optional[int] = 8):
         """Pick random nations (with no duplicates, no spoiler tags)."""
 
@@ -118,7 +118,7 @@ class RonPicker(commands.Cog):
 
         # Construct and send an embed message
         embed = discord.Embed(colour=discord.Colour.dark_orange())
-        embed.title = "Random nations"
+        embed.title = "Random nations (no duplicates)"
         embed.description = formatted_nations
 
         #await ctx.send(f"The random nations are:\n{formatted_nations}")
@@ -156,7 +156,7 @@ class RonPicker(commands.Cog):
 
         # Construct and send an embed message
         embed = discord.Embed(colour=discord.Colour.dark_orange())
-        embed.title = "Random nations"
+        embed.title = "Random nations (no duplicates)"
         embed.description = formatted_nations
 
         #await ctx.send(f"The random nations are:\n{formatted_nations}")
