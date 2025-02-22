@@ -55,7 +55,7 @@ class RonRobTauntsFallback(commands.Cog):
                 def check(msg):
                     return (
                         msg.channel == message.channel and
-                        msg.author.id == 136101831477690368 and
+                        msg.author.id == 155149108183695360 and
                         msg.content == taunt
                     )
 
