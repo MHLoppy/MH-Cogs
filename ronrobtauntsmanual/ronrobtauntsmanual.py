@@ -19,7 +19,7 @@ class RonRobTauntsManual(commands.Cog):
     async def respond_to_number(self, ctx, number: int):
         """Respond to a number command."""
         try:
-            msg = await self.taunt_list(int(content))
+            msg = await self.taunt_list(int(number))
             await ctx.send(msg)
         except (discord.HTTPException, discord.Forbidden):
             pass
