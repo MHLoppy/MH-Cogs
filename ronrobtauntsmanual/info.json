@@ -1,0 +1,27 @@
+{
+    "author" : [
+		"MHLoppy"
+    ],
+    "description" : "Manual lookup of Rise of Babel taunts (from Rise of Nations).",
+    "disabled" : false,
+    "hidden" : false,
+    "install_msg" : "Say `[p]`taunt `[number]` (1-999) to trigger the corresponding taunt.",
+    "max_bot_version" : "0.0.0",
+    "min_bot_version" : "3.1.8",
+    "min_python_version" : [
+        3,
+        7,
+        2
+    ],
+    "name" : "RonRobTauntsManual",
+    "permissions" : [
+        "embed_links"
+    ],
+    "required_cogs" : {},
+    "requirements" : [],
+    "short" : "Reponds with Rise of Babel taunts!",
+    "tags" : [
+        "utility",
+    ],
+    "type" : "COG"
+}
