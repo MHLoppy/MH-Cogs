@@ -37,7 +37,6 @@ class Nation(Enum):
     Persians = 23
 
 def emojify_color(color: int) -> str:
-
     if color == 1:
         return "🟥"
     # elif color == 2:
@@ -58,10 +57,10 @@ def emojify_color(color: int) -> str:
         return "⬜"
     elif color == 8:
         return "🟧"
-
+    else:
+        return "❌"
 
 def playerify_color(color: int) -> str:
-
     if color == 1:
         return "P1"
     elif color == 2:
@@ -78,6 +77,8 @@ def playerify_color(color: int) -> str:
         return "P7"
     elif color == 8:
         return "P8"
+    else:
+        return "P" + str(color)
 
 
 class RonPicker(commands.Cog):
@@ -89,6 +90,10 @@ class RonPicker(commands.Cog):
     @commands.command(aliases=["pick"])
     async def pick_nations(self, ctx, players: Optional[int] = 8):
         """Pick random nations (duplicates allowed, no spoiler tags)."""
+        
+        if players < 1 or players > 100:
+            await ctx.send("To reduce spam, player count is limited to 1-100.")
+            return
         
         # Generate specified number of random numbers between 0 and 23 inclusive
         random_integers = np.random.randint(low=0, high=24, size=players)
@@ -109,6 +114,10 @@ class RonPicker(commands.Cog):
     async def pick_nations_no_repeats(self, ctx, players: Optional[int] = 8):
         """Pick random nations (with no duplicates, no spoiler tags)."""
 
+        if players < 1 or players > 100:
+            await ctx.send("To reduce spam, player count is limited to 1-100.")
+            return
+
         # Generate specified number of random numbers between 0 and 23 inclusive, without duplicates
         random_integers = np.random.choice(24, size=players, replace=False)
 
@@ -128,6 +137,10 @@ class RonPicker(commands.Cog):
     async def pick_nations_spoilers(self, ctx, players: Optional[int] = 8):
         """Pick random nations (duplicates allowed, with spoiler tags)."""
         
+        if players < 1 or players > 100:
+            await ctx.send("To reduce spam, player count is limited to 1-100.")
+            return
+        
         # Generate specified number of random numbers between 0 and 23 inclusive
         random_integers = np.random.randint(low=0, high=24, size=players)
 
@@ -146,6 +159,10 @@ class RonPicker(commands.Cog):
     @commands.command(aliases=["pick_s2"])
     async def pick_nations_spoilers_no_repeats(self, ctx, players: Optional[int] = 8):
         """Pick random nations (with no duplicates, with spoiler tags)."""
+
+        if players < 1 or players > 100:
+            await ctx.send("To reduce spam, player count is limited to 1-100.")
+            return
 
         # Generate specified number of random numbers between 0 and 23 inclusive, without duplicates
         random_integers = np.random.choice(24, size=players, replace=False)
