@@ -158,7 +158,7 @@ class RonPicker(commands.Cog):
         #await ctx.send(f"The random nations are:\n{formatted_nations}")
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=["pick_s2"])
+    @commands.command(aliases=["pick_s2", "picku_s"])
     async def pick_nations_spoilers_no_repeats(self, ctx, players: Optional[int] = 8):
         """Pick random nations (with no duplicates, with spoiler tags)."""
 
