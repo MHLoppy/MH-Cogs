@@ -1,0 +1,9 @@
+{
+    "name": "MH-Cogs",
+    "author": [
+        "MHLoppy (MHLoppy#5133)"
+    ],
+    "short": "MHLoppy's cogs (plugins) for Red, a Discord bot.",
+    "description": "Misc cogs (plugins) for Red, a Discord bot.",
+    "install_msg": ""
+}
