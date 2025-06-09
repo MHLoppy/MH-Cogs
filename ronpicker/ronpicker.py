@@ -86,7 +86,8 @@ class RonPicker(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
-        self.rng = np.random.PCG64DXSM()
+        self.rng_engine = np.random.PCG64DXSM()
+        self.rng = np.random.Generator(self.rng_engine)
 
     @commands.command(aliases=["pick"])
     async def pick_nations(self, ctx, players: Optional[int] = 8):
