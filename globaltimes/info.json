@@ -18,7 +18,7 @@
     ],
     "required_cogs" : {},
     "requirements" : [
-        "geopy>=2.4"
+        "geopy>=2.4",
 		"timezonefinder>=6.5.2"
     ],
     "short" : "Posts current time in several cities.",
