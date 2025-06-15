@@ -4,11 +4,13 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+import discord
+import geopy
+import pytz
+
 from geopy.geocoders import Nominatim       # https://nominatim.org/
 from timezonefinder import TimezoneFinder
 from datetime import datetime
-import discord
-import pytz
 
 class GlobalTimes(commands.Cog):
     """Posts the current time in several cities of various timezones"""
