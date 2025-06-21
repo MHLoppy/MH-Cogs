@@ -88,7 +88,7 @@ class RonPicker(commands.Cog):
             await ctx.send("Player count is limited to 1-8.")
             return
         
-        if len(desc) > 100:
+        if len and len(desc) > 100:
             await ctx.send("Description too long (max 100 characters).")
             return
         
@@ -118,7 +118,7 @@ class RonPicker(commands.Cog):
             await ctx.send("Player count is limited to 1-8.")
             return
         
-        if len(desc) > 100:
+        if len and len(desc) > 100:
             await ctx.send("Description too long (max 100 characters).")
             return
 
@@ -148,7 +148,7 @@ class RonPicker(commands.Cog):
             await ctx.send("Player count is limited to 1-8.")
             return
         
-        if len(desc) > 100:
+        if len and len(desc) > 100:
             await ctx.send("Description too long (max 100 characters).")
             return
         
@@ -178,7 +178,7 @@ class RonPicker(commands.Cog):
             await ctx.send("Player count is limited to 1-8.")
             return
         
-        if len(desc) > 100:
+        if len and len(desc) > 100:
             await ctx.send("Description too long (max 100 characters).")
             return
 
