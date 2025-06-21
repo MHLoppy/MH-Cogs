@@ -73,10 +73,12 @@ class RonPicker(commands.Cog):
         return "P" + str(color)
 
     async def format_pick(self, count: int, nation_int: int) -> str:
-        return "* `" + self.playerify_color(count) + f":` " + f"{Nation(nation_int).name}"
+        player = await self.playerify_color(count)
+        return "* `" + player + f":` " + f"{Nation(nation_int).name}"
 
     async def format_pick_spoilers(self, count: int, nation_int: int) -> str:
-        return "* `" + self.playerify_color(count) + f":` ||`" + f"{Nation(nation_int).name:<9}"+ "`||"# <9 is part of the padding to make the output length uniform
+        player = await self.playerify_color(count)
+        return "* `" + player + f":` ||`" + f"{Nation(nation_int).name:<9}"+ "`||"# <9 is part of the padding to make the output length uniform
 
     @commands.command(aliases=["pick"])
     async def pick_nations(self, ctx, players: Optional[int] = 8):
