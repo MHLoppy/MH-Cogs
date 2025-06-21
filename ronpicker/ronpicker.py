@@ -60,26 +60,6 @@ def emojify_color(color: int) -> str:
     else:
         return "❌"
 
-def playerify_color(color: int) -> str:
-    if color == 1:
-        return "P1"
-    elif color == 2:
-        return "P2"
-    elif color == 3:
-        return "P3"
-    elif color == 4:
-        return "P4"
-    elif color == 5:
-        return "P5"
-    elif color == 6:
-        return "P6"
-    elif color == 7:
-        return "P7"
-    elif color == 8:
-        return "P8"
-    else:
-        return "P" + str(color)
-
 
 class RonPicker(commands.Cog):
     """Pick random nations for the game Rise of Nations, using much better randomization."""
@@ -89,11 +69,14 @@ class RonPicker(commands.Cog):
         self.rng_engine = np.random.PCG64DXSM()
         self.rng = np.random.Generator(self.rng_engine)
 
+    async def playerify_color(self, color: int) -> str:
+        return "P" + str(color)
+
     async def format_pick(self, count: int, nation_int: int) -> str:
-        return "* `" + playerify_color(count+1) + f":` " + f"{Nation(nation_int).name}"
+        return "* `" + self.playerify_color(count) + f":` " + f"{Nation(nation_int).name}"
 
     async def format_pick_spoilers(self, count: int, nation_int: int) -> str:
-        return "* `" + playerify_color(count+1) + f":` ||`" + f"{Nation(nation_int).name:<9}"+ "`||"# <9 is part of the padding to make the output length uniform
+        return "* `" + self.playerify_color(count) + f":` ||`" + f"{Nation(nation_int).name:<9}"+ "`||"# <9 is part of the padding to make the output length uniform
 
     @commands.command(aliases=["pick"])
     async def pick_nations(self, ctx, players: Optional[int] = 8):
