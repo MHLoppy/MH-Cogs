@@ -111,7 +111,7 @@ class RonPicker(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(aliases=["pick2", "picku"])
-    async def pick_nations_no_repeats(self, ctx, players: Optional[int] = 8):
+    async def pick_nations_no_repeats(self, ctx, players: Optional[int] = 8, *, desc: Optional[str] = None):
         """Pick random nations (with no duplicates, no spoiler tags)."""
 
         if players < 1 or players > 8:
@@ -141,7 +141,7 @@ class RonPicker(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(aliases=["pick_s"])
-    async def pick_nations_spoilers(self, ctx, players: Optional[int] = 8):
+    async def pick_nations_spoilers(self, ctx, players: Optional[int] = 8, *, desc: Optional[str] = None):
         """Pick random nations (duplicates allowed, with spoiler tags)."""
         
         if players < 1 or players > 8:
@@ -171,7 +171,7 @@ class RonPicker(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(aliases=["pick_s2", "picku_s"])
-    async def pick_nations_spoilers_no_repeats(self, ctx, players: Optional[int] = 8):
+    async def pick_nations_spoilers_no_repeats(self, ctx, players: Optional[int] = 8, *, desc: Optional[str] = None):
         """Pick random nations (with no duplicates, with spoiler tags)."""
 
         if players < 1 or players > 8:
