@@ -81,11 +81,15 @@ class RonPicker(commands.Cog):
         return "* `" + player + f":` ||`" + f"{Nation(nation_int).name:<9}"+ "`||"# <9 is part of the padding to make the output length uniform
 
     @commands.command(aliases=["pick"])
-    async def pick_nations(self, ctx, players: Optional[int] = 8):
+    async def pick_nations(self, ctx, players: Optional[int] = 8, *, desc: Optional[str] = None):
         """Pick random nations (duplicates allowed, no spoiler tags)."""
         
         if players < 1 or players > 8:
             await ctx.send("Player count is limited to 1-8.")
+            return
+        
+        if len(desc) > 100:
+            await ctx.send("Description too long (max 100 characters).")
             return
         
         # Generate specified number of random numbers between 0 and 23 inclusive
@@ -99,8 +103,11 @@ class RonPicker(commands.Cog):
         embed = discord.Embed(colour=discord.Colour.dark_orange())
         embed.title = "Random nations"
         embed.description = formatted_nations
+        embed.set_footer(text="Duplicate nations allowed")
+        if desc:
+            embed.title = title + " for " + desc
+            embed.colour=discord.Colour.dark_gold()
 
-        #await ctx.send(f"The random nations are:\n{formatted_nations}")
         await ctx.send(embed=embed)
 
     @commands.command(aliases=["pick2", "picku"])
@@ -109,6 +116,10 @@ class RonPicker(commands.Cog):
 
         if players < 1 or players > 8:
             await ctx.send("Player count is limited to 1-8.")
+            return
+        
+        if len(desc) > 100:
+            await ctx.send("Description too long (max 100 characters).")
             return
 
         # Generate specified number of random numbers between 0 and 23 inclusive, without duplicates
@@ -120,10 +131,13 @@ class RonPicker(commands.Cog):
 
         # Construct and send an embed message
         embed = discord.Embed(colour=discord.Colour.dark_orange())
-        embed.title = "Random nations (no duplicates)"
+        embed.title = "Random nations"
         embed.description = formatted_nations
+        embed.set_footer(text="Duplicate nations not allowed")
+        if desc:
+            embed.title = title + " for " + desc
+            embed.colour=discord.Colour.dark_gold()
 
-        #await ctx.send(f"The random nations are:\n{formatted_nations}")
         await ctx.send(embed=embed)
 
     @commands.command(aliases=["pick_s"])
@@ -134,6 +148,10 @@ class RonPicker(commands.Cog):
             await ctx.send("Player count is limited to 1-8.")
             return
         
+        if len(desc) > 100:
+            await ctx.send("Description too long (max 100 characters).")
+            return
+        
         # Generate specified number of random numbers between 0 and 23 inclusive
         random_integers = self.rng.integers(low=0, high=24, size=players)
 
@@ -145,8 +163,11 @@ class RonPicker(commands.Cog):
         embed = discord.Embed(colour=discord.Colour.dark_orange())
         embed.title = "Random nations"
         embed.description = formatted_nations
+        embed.set_footer(text="Duplicate nations allowed")
+        if desc:
+            embed.title = title + " for " + desc
+            embed.colour=discord.Colour.dark_gold()
 
-        #await ctx.send(f"The random nations are:\n{formatted_nations}")
         await ctx.send(embed=embed)
 
     @commands.command(aliases=["pick_s2", "picku_s"])
@@ -155,6 +176,10 @@ class RonPicker(commands.Cog):
 
         if players < 1 or players > 8:
             await ctx.send("Player count is limited to 1-8.")
+            return
+        
+        if len(desc) > 100:
+            await ctx.send("Description too long (max 100 characters).")
             return
 
         # Generate specified number of random numbers between 0 and 23 inclusive, without duplicates
@@ -166,8 +191,11 @@ class RonPicker(commands.Cog):
 
         # Construct and send an embed message
         embed = discord.Embed(colour=discord.Colour.dark_orange())
-        embed.title = "Random nations (no duplicates)"
+        embed.title = "Random nations"
         embed.description = formatted_nations
+        embed.set_footer(text="Duplicate nations not allowed")
+        if desc:
+            embed.title = title + " for " + desc
+            embed.colour=discord.Colour.dark_gold()
 
-        #await ctx.send(f"The random nations are:\n{formatted_nations}")
         await ctx.send(embed=embed)
