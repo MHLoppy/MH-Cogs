@@ -105,7 +105,7 @@ class RonPicker(commands.Cog):
         embed.description = formatted_nations
         embed.set_footer(text="Duplicate nations allowed")
         if desc:
-            embed.title = title + " for " + desc
+            embed.title = embed.title + " for " + desc
             embed.colour=discord.Colour.dark_gold()
 
         await ctx.send(embed=embed)
@@ -135,7 +135,7 @@ class RonPicker(commands.Cog):
         embed.description = formatted_nations
         embed.set_footer(text="Duplicate nations not allowed")
         if desc:
-            embed.title = title + " for " + desc
+            embed.title = embed.title + " for " + desc
             embed.colour=discord.Colour.dark_gold()
 
         await ctx.send(embed=embed)
@@ -165,7 +165,7 @@ class RonPicker(commands.Cog):
         embed.description = formatted_nations
         embed.set_footer(text="Duplicate nations allowed")
         if desc:
-            embed.title = title + " for " + desc
+            embed.title = embed.title + " for " + desc
             embed.colour=discord.Colour.dark_gold()
 
         await ctx.send(embed=embed)
