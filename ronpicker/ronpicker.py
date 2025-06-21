@@ -89,10 +89,10 @@ class RonPicker(commands.Cog):
         self.rng_engine = np.random.PCG64DXSM()
         self.rng = np.random.Generator(self.rng_engine)
 
-    async def format_pick(count: int, nation_int: int) -> str:
+    async def format_pick(self, count: int, nation_int: int) -> str:
         return "* `" + playerify_color(i+1) + f":` " + f"{Nation(nation_int).name}"
 
-    async def format_pick_spoilers(count: int, nation_int: int) -> str:
+    async def format_pick_spoilers(self, count: int, nation_int: int) -> str:
         return "* `" + playerify_color(i+1) + f":` ||`" + f"{Nation(nation_int).name:<9}"+ "`||"# <9 is part of the padding to make the output length uniform
 
     @commands.command(aliases=["pick"])
@@ -107,7 +107,7 @@ class RonPicker(commands.Cog):
         random_integers = self.rng.integers(low=0, high=24, size=players)
 
         # Convert to nations and format nicely, with no spoiler tags for each nation
-        formatted_nations = [(format_pick(i+1, int_value)) for i, int_value in enumerate(random_integers)]
+        formatted_nations = [(await self.format_pick(i+1, int_value)) for i, int_value in enumerate(random_integers)]
         formatted_nations = "\n".join(formatted_nations)
 
         # Construct and send an embed message
@@ -130,7 +130,7 @@ class RonPicker(commands.Cog):
         random_integers = self.rng.choice(24, size=players, replace=False)
 
         # Convert to nations and format nicely, with no spoiler tags for each nation
-        formatted_nations = [(format_pick(i+1, int_value)) for i, int_value in enumerate(random_integers)]
+        formatted_nations = [(await self.format_pick(i+1, int_value)) for i, int_value in enumerate(random_integers)]
         formatted_nations = "\n".join(formatted_nations)
 
         # Construct and send an embed message
@@ -153,7 +153,7 @@ class RonPicker(commands.Cog):
         random_integers = self.rng.integers(low=0, high=24, size=players)
 
         # Convert to nations and format nicely, with spoiler tags for each nation
-        formatted_nations = [(format_pick_spoilers(i+1, int_value)) for i, int_value in enumerate(random_integers)]
+        formatted_nations = [(await self.format_pick_spoilers(i+1, int_value)) for i, int_value in enumerate(random_integers)]
         formatted_nations = "\n".join(formatted_nations)
 
         # Construct and send an embed message
@@ -176,7 +176,7 @@ class RonPicker(commands.Cog):
         random_integers = self.rng.choice(24, size=players, replace=False)
 
         # Convert to nations and format nicely, with spoiler tags for each nation
-        formatted_nations = [(format_pick_spoilers(i+1, int_value)) for i, int_value in enumerate(random_integers)]
+        formatted_nations = [(await self.format_pick_spoilers(i+1, int_value)) for i, int_value in enumerate(random_integers)]
         formatted_nations = "\n".join(formatted_nations)
 
         # Construct and send an embed message
