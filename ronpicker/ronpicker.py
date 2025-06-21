@@ -90,10 +90,10 @@ class RonPicker(commands.Cog):
         self.rng = np.random.Generator(self.rng_engine)
 
     async def format_pick(self, count: int, nation_int: int) -> str:
-        return "* `" + playerify_color(i+1) + f":` " + f"{Nation(nation_int).name}"
+        return "* `" + playerify_color(count+1) + f":` " + f"{Nation(nation_int).name}"
 
     async def format_pick_spoilers(self, count: int, nation_int: int) -> str:
-        return "* `" + playerify_color(i+1) + f":` ||`" + f"{Nation(nation_int).name:<9}"+ "`||"# <9 is part of the padding to make the output length uniform
+        return "* `" + playerify_color(count+1) + f":` ||`" + f"{Nation(nation_int).name:<9}"+ "`||"# <9 is part of the padding to make the output length uniform
 
     @commands.command(aliases=["pick"])
     async def pick_nations(self, ctx, players: Optional[int] = 8):
