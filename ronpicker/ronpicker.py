@@ -11,30 +11,30 @@ from typing import Optional
 
 
 class Nation(Enum):
-    Aztecs = 0
-    Maya = 1
-    Inca = 2
-    Bantu = 3
-    Nubians = 4
-    Greeks = 5
-    Romans = 6
+    Aztecs    = 0
+    Maya      = 1
+    Inca      = 2
+    Bantu     = 3
+    Nubians   = 4
+    Greeks    = 5
+    Romans    = 6
     Egyptians = 7
-    Turks = 8
-    Spanish = 9
-    French = 10
-    British = 11
-    Germans = 12
-    Russians = 13
-    Chinese = 14
-    Japanese = 15
-    Koreans = 16
-    Mongols = 17
-    Iroquois = 18
-    Lakota = 19
+    Turks     = 8
+    Spanish   = 9
+    French    = 10
+    British   = 11
+    Germans   = 12
+    Russians  = 13
+    Chinese   = 14
+    Japanese  = 15
+    Koreans   = 16
+    Mongols   = 17
+    Iroquois  = 18
+    Lakota    = 19
     Americans = 20
-    Indians = 21
-    Dutch = 22
-    Persians = 23
+    Indians   = 21
+    Dutch     = 22
+    Persians  = 23
 
 def emojify_color(color: int) -> str:
     if color == 1:
@@ -89,6 +89,12 @@ class RonPicker(commands.Cog):
         self.rng_engine = np.random.PCG64DXSM()
         self.rng = np.random.Generator(self.rng_engine)
 
+    async def format_pick(count: int, nation_int: int) -> str:
+        return "* `" + playerify_color(i+1) + f":` " + f"{Nation(nation_int).name}"
+
+    async def format_pick_spoilers(count: int, nation_int: int) -> str:
+        return "* `" + playerify_color(i+1) + f":` ||`" + f"{Nation(nation_int).name:<9}"+ "`||"# <9 is part of the padding to make the output length uniform
+
     @commands.command(aliases=["pick"])
     async def pick_nations(self, ctx, players: Optional[int] = 8):
         """Pick random nations (duplicates allowed, no spoiler tags)."""
@@ -101,7 +107,7 @@ class RonPicker(commands.Cog):
         random_integers = self.rng.integers(low=0, high=24, size=players)
 
         # Convert to nations and format nicely, with no spoiler tags for each nation
-        formatted_nations = [("* `" + playerify_color(i+1) + f":` " + f"{Nation(int_value).name}") for i, int_value in enumerate(random_integers)]
+        formatted_nations = [(format_pick(i+1, int_value)) for i, int_value in enumerate(random_integers)]
         formatted_nations = "\n".join(formatted_nations)
 
         # Construct and send an embed message
@@ -124,7 +130,7 @@ class RonPicker(commands.Cog):
         random_integers = self.rng.choice(24, size=players, replace=False)
 
         # Convert to nations and format nicely, with no spoiler tags for each nation
-        formatted_nations = [("* `" + playerify_color(i+1) + f":` " + f"{Nation(int_value).name}") for i, int_value in enumerate(random_integers)]
+        formatted_nations = [(format_pick(i+1, int_value)) for i, int_value in enumerate(random_integers)]
         formatted_nations = "\n".join(formatted_nations)
 
         # Construct and send an embed message
@@ -147,7 +153,7 @@ class RonPicker(commands.Cog):
         random_integers = self.rng.integers(low=0, high=24, size=players)
 
         # Convert to nations and format nicely, with spoiler tags for each nation
-        formatted_nations = [("* `" + playerify_color(i+1) + f":` ||`" + f"{Nation(int_value).name:<9}"+ "`||") for i, int_value in enumerate(random_integers)]
+        formatted_nations = [(format_pick_spoilers(i+1, int_value)) for i, int_value in enumerate(random_integers)]
         formatted_nations = "\n".join(formatted_nations)
 
         # Construct and send an embed message
@@ -170,7 +176,7 @@ class RonPicker(commands.Cog):
         random_integers = self.rng.choice(24, size=players, replace=False)
 
         # Convert to nations and format nicely, with spoiler tags for each nation
-        formatted_nations = [("* `" + playerify_color(i+1) + f":` ||`" + f"{Nation(int_value).name:<9}"+ "`||") for i, int_value in enumerate(random_integers)]
+        formatted_nations = [(format_pick_spoilers(i+1, int_value)) for i, int_value in enumerate(random_integers)]
         formatted_nations = "\n".join(formatted_nations)
 
         # Construct and send an embed message
