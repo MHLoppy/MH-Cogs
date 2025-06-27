@@ -100,7 +100,7 @@ class RonPicker(commands.Cog):
         return "* `" + player + f":` ||`" + f"{Nation(nation_int).name:<9}"+ "`||"# <9 is part of the padding to make the output length uniform
 
     async def format_map(self, count: int, map_int: int) -> str:
-        map_str = "Map" + str(count)
+        map_str = "Map " + str(count)
         msg = "* " + map_str + f": " + f"{Map(map_int).name}"
         msg = msg.replace("_", " ")
         return msg
