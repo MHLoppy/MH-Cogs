@@ -259,7 +259,7 @@ class RonPicker(commands.Cog):
         if pool_size == 1:
             embed.title = embed.title + "s"
         embed.description = formatted_maps
-        embed.set_footer(text="Duplicate maps allowed")
+        embed.set_footer(text="Duplicate maps not allowed")
         if desc:
             embed.title = title + " for " + desc
 
