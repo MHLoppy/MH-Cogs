@@ -259,7 +259,7 @@ class RonPicker(commands.Cog):
         if pool_size == 1:
             embed.title = embed.title + "s"
         embed.description = formatted_maps
-        embed.set_footer(text="Duplicate maps not allowed")
+        embed.set_footer(text="Duplicate maps allowed")
         if desc:
             embed.title = title + " for " + desc
 
@@ -267,7 +267,7 @@ class RonPicker(commands.Cog):
     
     @commands.command(aliases=["mapu"])
     async def pick_map_no_duplicates(self, ctx, pool_size: Optional[int] = 1, *, desc: Optional[str] = None):
-        """Pick a specified number of random maps (duplicates allowed)."""
+        """Pick a specified number of random maps (duplicates not allowed)."""
         
         if pool_size < 1 or pool_size > 9:
             await ctx.send("Map count is limited to 1-9.")
@@ -290,7 +290,7 @@ class RonPicker(commands.Cog):
         if pool_size == 1:
             embed.title = embed.title + "s"
         embed.description = formatted_maps
-        embed.set_footer(text="Duplicate maps allowed")
+        embed.set_footer(text="Duplicate maps not allowed")
         if desc:
             embed.title = title + " for " + desc
 
@@ -298,7 +298,7 @@ class RonPicker(commands.Cog):
     
     @commands.command(aliases=["lmap", "landmap"])
     async def pick_map_land(self, ctx, pool_size: Optional[int] = 1, *, desc: Optional[str] = None):
-        """Pick a specified number of random maps (duplicates allowed)."""
+        """Pick a specified number of random land maps (duplicates allowed)."""
         
         if pool_size < 1 or pool_size > 9:
             await ctx.send("Map count is limited to 1-9.")
@@ -321,7 +321,7 @@ class RonPicker(commands.Cog):
         if pool_size == 1:
             embed.title = embed.title + "s"
         embed.description = formatted_maps
-        embed.set_footer(text="Duplicate maps not allowed")
+        embed.set_footer(text="Duplicate maps allowed")
         if desc:
             embed.title = title + " for " + desc
 
@@ -329,7 +329,7 @@ class RonPicker(commands.Cog):
     
     @commands.command(aliases=["lmapu", "landmapu"])
     async def pick_map_no_duplicates(self, ctx, pool_size: Optional[int] = 1, *, desc: Optional[str] = None):
-        """Pick a specified number of random maps (duplicates allowed)."""
+        """Pick a specified number of random land maps (duplicates not allowed)."""
         
         if pool_size < 1 or pool_size > 9:
             await ctx.send("Map count is limited to 1-9.")
@@ -352,7 +352,7 @@ class RonPicker(commands.Cog):
         if pool_size == 1:
             embed.title = embed.title + "s"
         embed.description = formatted_maps
-        embed.set_footer(text="Duplicate maps allowed")
+        embed.set_footer(text="Duplicate maps not allowed")
         if desc:
             embed.title = title + " for " + desc
 
