@@ -316,7 +316,7 @@ class RonPicker(commands.Cog):
         formatted_maps = "\n".join(formatted_maps)
 
         # Construct and send an embed message
-        embed = discord.Embed(colour=discord.Colour.gold())
+        embed = discord.Embed(colour=discord.Colour.green())
         embed.title = "Random land map"
         if pool_size == 1:
             embed.title = embed.title + "s"
@@ -347,7 +347,7 @@ class RonPicker(commands.Cog):
         formatted_maps = "\n".join(formatted_maps)
 
         # Construct and send an embed message
-        embed = discord.Embed(colour=discord.Colour.gold())
+        embed = discord.Embed(colour=discord.Colour.green())
         embed.title = "Random land map"
         if pool_size == 1:
             embed.title = embed.title + "s"
@@ -378,7 +378,7 @@ class RonPicker(commands.Cog):
         formatted_maps = "\n".join(formatted_maps)
 
         # Construct and send an embed message
-        embed = discord.Embed(colour=discord.Colour.gold())
+        embed = discord.Embed(colour=discord.Colour.blue())
         embed.title = "Random sea map"
         if pool_size == 1:
             embed.title = embed.title + "s"
@@ -389,7 +389,7 @@ class RonPicker(commands.Cog):
 
         await ctx.send(embed=embed)
     
-    @commands.command(aliases=["smapu", "smapu", "wmapu"])
+    @commands.command(aliases=["smapu", "seamapu", "wmapu"])
     async def pick_map_sea_no_duplicates(self, ctx, pool_size: Optional[int] = 1, *, desc: Optional[str] = None):
         """Pick a specified number of random sea maps (duplicates not allowed)."""
         
@@ -409,7 +409,7 @@ class RonPicker(commands.Cog):
         formatted_maps = "\n".join(formatted_maps)
 
         # Construct and send an embed message
-        embed = discord.Embed(colour=discord.Colour.gold())
+        embed = discord.Embed(colour=discord.Colour.blue())
         embed.title = "Random sea map"
         if pool_size == 1:
             embed.title = embed.title + "s"
