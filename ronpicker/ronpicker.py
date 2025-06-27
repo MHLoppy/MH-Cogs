@@ -264,3 +264,34 @@ class RonPicker(commands.Cog):
             embed.title = title + " for " + desc
 
         await ctx.send(embed=embed)
+    
+    @commands.command(aliases=["mapu"])
+    async def pick_map_no_duplicates(self, ctx, pool_size: Optional[int] = 1, *, desc: Optional[str] = None):
+        """Pick a specified number of random maps (duplicates allowed)."""
+        
+        if pool_size < 1 or pool_size > 9:
+            await ctx.send("Map count is limited to 1-9.")
+            return
+        
+        if desc and len(desc) > 100:
+            await ctx.send("Description too long (max 100 characters).")
+            return
+
+        # Generate specified number of random numbers between 0 and 16 inclusive
+        random_integers = self.rng.choice(17, size=pool_size, replace=False)
+
+        # Convert to maps and format nicely
+        formatted_maps = [(await self.format_map(i+1, int_value)) for i, int_value in enumerate(random_integers)]
+        formatted_maps = "\n".join(formatted_maps)
+
+        # Construct and send an embed message
+        embed = discord.Embed(colour=discord.Colour.gold())
+        embed.title = "Random map"
+        if pool_size == 1:
+            embed.title = embed.title + "s"
+        embed.description = formatted_maps
+        embed.set_footer(text="Duplicate maps allowed")
+        if desc:
+            embed.title = title + " for " + desc
+
+        await ctx.send(embed=embed)
