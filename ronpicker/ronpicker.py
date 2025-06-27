@@ -402,7 +402,7 @@ class RonPicker(commands.Cog):
             return
 
         # Generate specified number of random numbers between 9 and 16 inclusive
-        random_integers = self.rng.choice(np.arrange(9, 17), size=pool_size, replace=False)
+        random_integers = self.rng.choice(np.arange(9, 17), size=pool_size, replace=False)
 
         # Convert to maps and format nicely
         formatted_maps = [(await self.format_map(i+1, int_value)) for i, int_value in enumerate(random_integers)]
