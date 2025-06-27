@@ -36,6 +36,25 @@ class Nation(Enum):
     Dutch     = 22
     Persians  = 23
 
+class Map(Enum):
+    African_Watering_Hole = 0
+    Amazon_Rain_Forest    = 1
+    Australian_Outback    = 2
+    Great_Lakes           = 3
+    Great_Sahara          = 4
+    Himalayas             = 5
+    Old_World             = 6
+    Southwest_Mesa        = 7
+    Mediterranean         = 8   # BEGIN SEA MAPS
+    Atlantic_Sea_Power    = 9
+    British_Isles         = 10
+    Colonial_Powers       = 11
+    East_Indies           = 12
+    East_Meets_West       = 13
+    New_World             = 14
+    Nile_Delta            = 15
+    Warring_States        = 16
+
 def emojify_color(color: int) -> str:
     if color == 1:
         return "🟥"
@@ -80,6 +99,12 @@ class RonPicker(commands.Cog):
         player = await self.playerify_color(count)
         return "* `" + player + f":` ||`" + f"{Nation(nation_int).name:<9}"+ "`||"# <9 is part of the padding to make the output length uniform
 
+    async def format_map(self, count: int, map_int: int) -> str:
+        map_str = "Map" + str(count)
+        msg = "* " + map_str + f": " + f"{Map(map_int).name}"
+        msg.replace("_", " ")
+        return msg
+
     @commands.command(aliases=["pick"])
     async def pick_nations(self, ctx, players: Optional[int] = 8, *, desc: Optional[str] = None):
         """Pick random nations (duplicates allowed, no spoiler tags)."""
@@ -101,7 +126,9 @@ class RonPicker(commands.Cog):
 
         # Construct and send an embed message
         embed = discord.Embed(colour=discord.Colour.dark_orange())
-        embed.title = "Random nations"
+        embed.title = "Random nation"
+        if players = 1:
+            embed.title = embed.title + "s"
         embed.description = formatted_nations
         embed.set_footer(text="Duplicate nations allowed")
         if desc:
@@ -131,7 +158,9 @@ class RonPicker(commands.Cog):
 
         # Construct and send an embed message
         embed = discord.Embed(colour=discord.Colour.dark_orange())
-        embed.title = "Random nations"
+        embed.title = "Random nation"
+        if players = 1:
+            embed.title = embed.title + "s"
         embed.description = formatted_nations
         embed.set_footer(text="Duplicate nations not allowed")
         if desc:
@@ -161,7 +190,9 @@ class RonPicker(commands.Cog):
 
         # Construct and send an embed message
         embed = discord.Embed(colour=discord.Colour.dark_orange())
-        embed.title = "Random nations"
+        embed.title = "Random nation"
+        if players = 1:
+            embed.title = embed.title + "s"
         embed.description = formatted_nations
         embed.set_footer(text="Duplicate nations allowed")
         if desc:
@@ -191,11 +222,44 @@ class RonPicker(commands.Cog):
 
         # Construct and send an embed message
         embed = discord.Embed(colour=discord.Colour.dark_orange())
-        embed.title = "Random nations"
+        embed.title = "Random nation"
+        if players = 1:
+            embed.title = embed.title + "s"
         embed.description = formatted_nations
         embed.set_footer(text="Duplicate nations not allowed")
         if desc:
             embed.title = title + " for " + desc
             embed.colour=discord.Colour.dark_gold()
+
+        await ctx.send(embed=embed)
+        
+    @commands.command(aliases=["map"])
+    async def pick_map(self, ctx, pool_size: Optional[int] = 1, *, desc: Optional[str] = None):
+        """Pick a specified number of random maps (duplicates allowed)."""
+        
+        if pool_size < 1 or pool_size > 9:
+            await ctx.send("Map count is limited to 1-9.")
+            return
+        
+        if desc and len(desc) > 100:
+            await ctx.send("Description too long (max 100 characters).")
+            return
+
+        # Generate specified number of random numbers between 0 and 16 inclusive
+        random_integers = self.rng.integers(low=0, high=17, size=pool_size)
+
+        # Convert to maps and format nicely
+        formatted_maps = [(await self.format_map(i+1, int_value)) for i, int_value in enumerate(random_integers)]
+        formatted_maps = "\n".join(formatted_maps)
+
+        # Construct and send an embed message
+        embed = discord.Embed(colour=discord.Colour.gold())
+        embed.title = "Random map"
+        if pool_size = 1:
+            embed.title = embed.title + "s"
+        embed.description = formatted_maps
+        embed.set_footer(text="Duplicate maps allowed")
+        if desc:
+            embed.title = title + " for " + desc
 
         await ctx.send(embed=embed)
