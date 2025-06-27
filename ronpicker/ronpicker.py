@@ -127,7 +127,7 @@ class RonPicker(commands.Cog):
         # Construct and send an embed message
         embed = discord.Embed(colour=discord.Colour.dark_orange())
         embed.title = "Random nation"
-        if players = 1:
+        if players == 1:
             embed.title = embed.title + "s"
         embed.description = formatted_nations
         embed.set_footer(text="Duplicate nations allowed")
@@ -159,7 +159,7 @@ class RonPicker(commands.Cog):
         # Construct and send an embed message
         embed = discord.Embed(colour=discord.Colour.dark_orange())
         embed.title = "Random nation"
-        if players = 1:
+        if players == 1:
             embed.title = embed.title + "s"
         embed.description = formatted_nations
         embed.set_footer(text="Duplicate nations not allowed")
@@ -191,7 +191,7 @@ class RonPicker(commands.Cog):
         # Construct and send an embed message
         embed = discord.Embed(colour=discord.Colour.dark_orange())
         embed.title = "Random nation"
-        if players = 1:
+        if players == 1:
             embed.title = embed.title + "s"
         embed.description = formatted_nations
         embed.set_footer(text="Duplicate nations allowed")
@@ -223,7 +223,7 @@ class RonPicker(commands.Cog):
         # Construct and send an embed message
         embed = discord.Embed(colour=discord.Colour.dark_orange())
         embed.title = "Random nation"
-        if players = 1:
+        if players == 1:
             embed.title = embed.title + "s"
         embed.description = formatted_nations
         embed.set_footer(text="Duplicate nations not allowed")
@@ -232,7 +232,8 @@ class RonPicker(commands.Cog):
             embed.colour=discord.Colour.dark_gold()
 
         await ctx.send(embed=embed)
-        
+    
+    # An interesting adaptation would be to run the output on a custom server with map emoji, then forward the message to the server it was called from
     @commands.command(aliases=["map"])
     async def pick_map(self, ctx, pool_size: Optional[int] = 1, *, desc: Optional[str] = None):
         """Pick a specified number of random maps (duplicates allowed)."""
@@ -255,7 +256,7 @@ class RonPicker(commands.Cog):
         # Construct and send an embed message
         embed = discord.Embed(colour=discord.Colour.gold())
         embed.title = "Random map"
-        if pool_size = 1:
+        if pool_size == 1:
             embed.title = embed.title + "s"
         embed.description = formatted_maps
         embed.set_footer(text="Duplicate maps allowed")
