@@ -102,7 +102,7 @@ class RonPicker(commands.Cog):
     async def format_map(self, count: int, map_int: int) -> str:
         map_str = "Map" + str(count)
         msg = "* " + map_str + f": " + f"{Map(map_int).name}"
-        msg.replace("_", " ")
+        msg = msg.replace("_", " ")
         return msg
 
     @commands.command(aliases=["pick"])
