@@ -38,7 +38,7 @@ class Nation(Enum):
 
 class Map(Enum):
     African_Watering_Hole = 0
-    Amazon_Rain_Forest    = 1
+    Amazon_Rainforest     = 1
     Australian_Outback    = 2
     Great_Lakes           = 3
     Great_Sahara          = 4
