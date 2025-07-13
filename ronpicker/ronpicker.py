@@ -129,8 +129,8 @@ class RonPicker(commands.Cog):
         embed.title = "Random nation"
         if players > 1:
             embed.title = embed.title + "s"
+            embed.set_footer(text="Duplicate nations allowed")
         embed.description = formatted_nations
-        embed.set_footer(text="Duplicate nations allowed")
         if desc:
             embed.title = embed.title + " for " + desc
             embed.colour=discord.Colour.dark_gold()
@@ -161,8 +161,8 @@ class RonPicker(commands.Cog):
         embed.title = "Random nation"
         if players > 1:
             embed.title = embed.title + "s"
+            embed.set_footer(text="Duplicate nations not allowed")
         embed.description = formatted_nations
-        embed.set_footer(text="Duplicate nations not allowed")
         if desc:
             embed.title = embed.title + " for " + desc
             embed.colour=discord.Colour.dark_gold()
@@ -193,8 +193,8 @@ class RonPicker(commands.Cog):
         embed.title = "Random nation"
         if players > 1:
             embed.title = embed.title + "s"
+            embed.set_footer(text="Duplicate nations allowed")
         embed.description = formatted_nations
-        embed.set_footer(text="Duplicate nations allowed")
         if desc:
             embed.title = embed.title + " for " + desc
             embed.colour=discord.Colour.dark_gold()
@@ -225,8 +225,8 @@ class RonPicker(commands.Cog):
         embed.title = "Random nation"
         if players > 1:
             embed.title = embed.title + "s"
+            embed.set_footer(text="Duplicate nations not allowed")
         embed.description = formatted_nations
-        embed.set_footer(text="Duplicate nations not allowed")
         if desc:
             embed.title = title + " for " + desc
             embed.colour=discord.Colour.dark_gold()
@@ -258,8 +258,8 @@ class RonPicker(commands.Cog):
         embed.title = "Random map"
         if pool_size > 1:
             embed.title = embed.title + "s"
+            embed.set_footer(text="Duplicate maps allowed")
         embed.description = formatted_maps
-        embed.set_footer(text="Duplicate maps allowed")
         if desc:
             embed.title = title + " for " + desc
 
@@ -289,8 +289,8 @@ class RonPicker(commands.Cog):
         embed.title = "Random map"
         if pool_size > 1:
             embed.title = embed.title + "s"
+            embed.set_footer(text="Duplicate maps not allowed")
         embed.description = formatted_maps
-        embed.set_footer(text="Duplicate maps not allowed")
         if desc:
             embed.title = title + " for " + desc
 
@@ -320,8 +320,8 @@ class RonPicker(commands.Cog):
         embed.title = "Random land map"
         if pool_size > 1:
             embed.title = embed.title + "s"
+            embed.set_footer(text="Duplicate maps allowed")
         embed.description = formatted_maps
-        embed.set_footer(text="Duplicate maps allowed")
         if desc:
             embed.title = title + " for " + desc
 
@@ -351,8 +351,8 @@ class RonPicker(commands.Cog):
         embed.title = "Random land map"
         if pool_size > 1:
             embed.title = embed.title + "s"
+            embed.set_footer(text="Duplicate maps not allowed")
         embed.description = formatted_maps
-        embed.set_footer(text="Duplicate maps not allowed")
         if desc:
             embed.title = title + " for " + desc
 
@@ -382,8 +382,8 @@ class RonPicker(commands.Cog):
         embed.title = "Random sea map"
         if pool_size > 1:
             embed.title = embed.title + "s"
+            embed.set_footer(text="Duplicate maps allowed")
         embed.description = formatted_maps
-        embed.set_footer(text="Duplicate maps allowed")
         if desc:
             embed.title = title + " for " + desc
 
@@ -413,8 +413,8 @@ class RonPicker(commands.Cog):
         embed.title = "Random sea map"
         if pool_size > 1:
             embed.title = embed.title + "s"
+            embed.set_footer(text="Duplicate maps not allowed")
         embed.description = formatted_maps
-        embed.set_footer(text="Duplicate maps not allowed")
         if desc:
             embed.title = title + " for " + desc
 
