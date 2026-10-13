@@ -126,7 +126,7 @@ class RonPicker(commands.Cog):
 
         # Construct and send an embed message
         embed = discord.Embed(colour=discord.Colour.dark_orange())
-        embed.title = "Random nation"
+        embed.title = "<:Random:924160693048057888> Random nation"
         if players > 1:
             embed.title = embed.title + "s"
             embed.set_footer(text="Duplicate nations allowed")
@@ -158,7 +158,7 @@ class RonPicker(commands.Cog):
 
         # Construct and send an embed message
         embed = discord.Embed(colour=discord.Colour.dark_orange())
-        embed.title = "Random nation"
+        embed.title = "<:Random:924160693048057888> Random nation"
         if players > 1:
             embed.title = embed.title + "s"
             embed.set_footer(text="Duplicate nations not allowed")
@@ -190,7 +190,7 @@ class RonPicker(commands.Cog):
 
         # Construct and send an embed message
         embed = discord.Embed(colour=discord.Colour.dark_orange())
-        embed.title = "Random nation"
+        embed.title = "<:Random:924160693048057888> Random nation"
         if players > 1:
             embed.title = embed.title + "s"
             embed.set_footer(text="Duplicate nations allowed")
@@ -222,7 +222,7 @@ class RonPicker(commands.Cog):
 
         # Construct and send an embed message
         embed = discord.Embed(colour=discord.Colour.dark_orange())
-        embed.title = "Random nation"
+        embed.title = "<:Random:924160693048057888> Random nation"
         if players > 1:
             embed.title = embed.title + "s"
             embed.set_footer(text="Duplicate nations not allowed")
@@ -255,7 +255,7 @@ class RonPicker(commands.Cog):
 
         # Construct and send an embed message
         embed = discord.Embed(colour=discord.Colour.gold())
-        embed.title = "Random map"
+        embed.title = "<:Random:924160693048057888> Random map"
         if pool_size > 1:
             embed.title = embed.title + "s"
             embed.set_footer(text="Duplicate maps allowed")
@@ -286,7 +286,7 @@ class RonPicker(commands.Cog):
 
         # Construct and send an embed message
         embed = discord.Embed(colour=discord.Colour.gold())
-        embed.title = "Random map"
+        embed.title = "<:Random:924160693048057888> Random map"
         if pool_size > 1:
             embed.title = embed.title + "s"
             embed.set_footer(text="Duplicate maps not allowed")
@@ -317,7 +317,7 @@ class RonPicker(commands.Cog):
 
         # Construct and send an embed message
         embed = discord.Embed(colour=discord.Colour.green())
-        embed.title = "Random land map"
+        embed.title = "<:Random:924160693048057888> Random land map"
         if pool_size > 1:
             embed.title = embed.title + "s"
             embed.set_footer(text="Duplicate maps allowed")
@@ -348,7 +348,7 @@ class RonPicker(commands.Cog):
 
         # Construct and send an embed message
         embed = discord.Embed(colour=discord.Colour.green())
-        embed.title = "Random land map"
+        embed.title = "<:Random:924160693048057888> Random land map"
         if pool_size > 1:
             embed.title = embed.title + "s"
             embed.set_footer(text="Duplicate maps not allowed")
@@ -379,7 +379,7 @@ class RonPicker(commands.Cog):
 
         # Construct and send an embed message
         embed = discord.Embed(colour=discord.Colour.blue())
-        embed.title = "Random sea map"
+        embed.title = "<:Random:924160693048057888> Random sea map"
         if pool_size > 1:
             embed.title = embed.title + "s"
             embed.set_footer(text="Duplicate maps allowed")
@@ -410,7 +410,7 @@ class RonPicker(commands.Cog):
 
         # Construct and send an embed message
         embed = discord.Embed(colour=discord.Colour.blue())
-        embed.title = "Random sea map"
+        embed.title = "<:Random:924160693048057888> Random sea map"
         if pool_size > 1:
             embed.title = embed.title + "s"
             embed.set_footer(text="Duplicate maps not allowed")
